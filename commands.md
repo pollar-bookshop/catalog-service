@@ -31,4 +31,6 @@
   * java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar  
   
   * 북 생성 요청
-    * http POST : 9001/books author="Lyra Silverstar" title="Northern Lights" isbn="1234567891" price=9.90 
+    * http POST :9001/books author="Lyra Silverstar" title="Northern Lights" isbn="1234567891" price=9.90
+  * 잘못된 북 생성 요청
+    * http POST :9001/books author="John Snow" title="" isbn="123ABC456Z" price=9.90
