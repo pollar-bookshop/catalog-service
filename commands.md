@@ -77,4 +77,5 @@
     * java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
     * http :9001/
       * Welcome to the production catalog from the config sercer
+#### ch4.4.2 내결함성이 높은 설정 클라이언트의 구축
 
