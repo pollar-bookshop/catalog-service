@@ -55,4 +55,13 @@
   * 깃허브 액션은 직접 소프트웨어 워크플로우를 자동화할 수 있다. 워크플로는 깃허브 저장소 루트의 .github/workflow 폴더에 YAML 형식으로 기술돼야 한다.
 
 ### ch4. 외부화 설정 관리
-#### ch4.1.2 프로파일: 기능 플래그와 설정 그룹
+#### ch4.3.1  스크링 클라우드 컨피그 서버로 중앙식 설정 관리하기
+  * 깃 저장소에 환경설정용 리파지터리 만들기
+    * 아래 파일 생성 후 환경설정
+      * catalog-service.yml
+      * catalog-service-prod.yml
+#### ch4.3.2~3 환경 설정 서버 구성
+  * 환경설정용 서버 구성 후 양식에 맞게 yml파일 작성 (포트=8888)
+  * 아래 명령어로 api 요청 후 데이터 확인
+    * http :8888/catalog-service/default
+    * http :8888/catalog-service/prod
