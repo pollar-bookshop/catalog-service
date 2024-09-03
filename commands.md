@@ -46,3 +46,6 @@
 
 #### ch3.4.3 @WebMvcTest를 사용한 REST 컨트롤러의 테스트
   * ./gradlew test --tests BookControllerMvcTests
+
+#### ch3.4.4 @JsonTest를 사용한 JSON 직렬화 테스트
+  * ./gradlew test --tests BookJsonTests
