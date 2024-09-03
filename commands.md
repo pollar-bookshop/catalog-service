@@ -49,3 +49,7 @@
 
 #### ch3.4.4 @JsonTest를 사용한 JSON 직렬화 테스트
   * ./gradlew test --tests BookJsonTests
+
+### ch3.5 배포 파이프라인: 빌드 및 테스트
+#### ch3.5.2 깃허브 액션을 이용한 커밋 단계 구현
+  * 깃허브 액션은 직접 소프트웨어 워크플로우를 자동화할 수 있다. 워크플로는 깃허브 저장소 루트의 .github/workflow 폴더에 YAML 형식으로 기술돼야 한다.
