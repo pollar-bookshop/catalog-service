@@ -20,6 +20,12 @@ java {
 	}
 }
 
+// profile로 testdata를 추가해 demo.BookDataLoader가 실행될 수 있게 설정
+// 인텔리제이에서 어플리케이션을 실행하면 안되고 ./gradlew bootRun 명령어를 사용해야 함
+bootRun {
+	systemProperty 'spring.profiles.active', 'testdata'
+}
+
 repositories {
 	mavenCentral()
 }
