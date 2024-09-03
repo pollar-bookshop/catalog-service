@@ -1,4 +1,4 @@
-### ch2
+## ch2
   * 도커 이미지 빌드하기
     * ./gradlew bootBuildImage
       * rapository: catalog-service
@@ -25,7 +25,7 @@
   * 클러스터 중지
     * minikube stop
 
-### ch3
+## ch3
   * ./gradlew bootJar
     * build/libs/catalog-service-0.0.1-SNAPSHOT.jar 파일 생성
   * java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar  
@@ -34,3 +34,11 @@
     * http POST :9001/books author="Lyra Silverstar" title="Northern Lights" isbn="1234567891" price=9.90
   * 잘못된 북 생성 요청
     * http POST :9001/books author="John Snow" title="" isbn="123ABC456Z" price=9.90
+
+### ch3.4 스프링 RESTful 애플리케이션 테스트
+#### ch3.4.1 JUnit5를 이용한 단위테스트
+  * BookValidationTests 테스트
+    * ./gradlew test --tests BookValidationTests
+
+#### ch3.4.2 SpringBootTest를 통한 통합테스트
+  
