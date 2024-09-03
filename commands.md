@@ -65,3 +65,16 @@
   * 아래 명령어로 api 요청 후 데이터 확인
     * http :8888/catalog-service/default
     * http :8888/catalog-service/prod
+
+#### ch4.4.1 설정 클라이언트 구축
+  * catalog-service 에서 yml파일에 필요한 데이터 입력
+  * config서버 실행
+  * catalog 루트에서 jar파일 생성 후 실행 및 api 요청
+    * ./gradlew bootJar
+    * java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar
+    * http :9001/
+      * Welcome to the catalog from config server
+    * java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
+    * http :9001/
+      * Welcome to the production catalog from the config sercer
+

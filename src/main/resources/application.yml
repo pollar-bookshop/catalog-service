@@ -12,3 +12,12 @@ server:
 # ??? ?? ?? ? ??
 polar:
   greeting: Welcome to the local book catalog!
+
+spring:
+  application:
+    name: catalog-service # 설정 서버에서 설정을 필터링하는데 사용다는 애플리케이션 이름
+  config:
+    import: "optional:configserver:" # 가능하면 configserver에서 설정 데이터를 가져온다
+  cloud:
+    config:
+      uri: http://localhost:8888 # 설정 서버의 URL
