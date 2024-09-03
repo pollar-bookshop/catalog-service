@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("books")
 public class BookController {
+
     private final BookService bookService;
 
     public BookController(BookService bookService) {
@@ -20,14 +21,13 @@ public class BookController {
         return bookService.viewBookList();
     }
 
-
     @GetMapping("{isbn}")
     public Book getByIsbn(@PathVariable String isbn) {
         return bookService.viewBookDetails(isbn);
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // 책이 성공적으로 생성되면 201 상태코드를 반환한다.
+    @ResponseStatus(HttpStatus.CREATED)
     public Book post(@Valid @RequestBody Book book) {
         return bookService.addBookToCatalog(book);
     }
@@ -40,6 +40,7 @@ public class BookController {
 
     @PutMapping("{isbn}")
     public Book put(@PathVariable String isbn, @Valid @RequestBody Book book) {
-        return bookService.editBookDetail(isbn, book);
+        return bookService.editBookDetails(isbn, book);
     }
+
 }

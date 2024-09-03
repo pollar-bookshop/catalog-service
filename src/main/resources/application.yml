@@ -35,3 +35,13 @@ spring:
         initial-interval: 1000 # 최초 재시도 지연 시간(밀리초)
         max-interval: 2000 # 재시도 지연 최대 시간(밀리초)
         multiplier: 1.1 # 지연시간 계산 승수
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
+    hikari:
+        connection-timeout: 2000
+        maximum-pool-size: 5
+  sql:
+    init:
+      mode: always

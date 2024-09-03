@@ -84,3 +84,13 @@
     * http :9001/
       * Welcome to the catalog from fresh config server
 
+## ch5 클라우드에서 데이터 저장과 관리
+### ch5.1 클라우드 네이티브 시스템을 위한 데이터베이스
+#### ch5.1.2 PostgreSQL을 컨테이너로 실행
+  * docker run -d \
+    -e POSTGRES_USER=user \
+    -e POSTGRES_PASSWORD=password \
+    -e POSTGRES_DB=polardb_catalog \
+    -p 5432:5432 \
+    postgres:14.4
+
