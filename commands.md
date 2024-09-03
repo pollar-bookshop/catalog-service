@@ -77,5 +77,10 @@
     * java -jar build/libs/catalog-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod
     * http :9001/
       * Welcome to the production catalog from the config sercer
-#### ch4.4.2 내결함성이 높은 설정 클라이언트의 구축
+#### ch4.4.3 런타임 시 설정 새로고침
+  * catalog-service에서 actuator 관련 설정
+  * config-repo에서 yml 설정 변경 후 리프레쉬 요청 및 새로운 설정 데이터 확인
+    * http POST :9001/actuator/refresh
+    * http :9001/
+      * Welcome to the catalog from fresh config server
 

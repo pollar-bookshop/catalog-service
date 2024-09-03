@@ -9,6 +9,12 @@ server:
       max: 50
       min-spare: 5
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh # /actuator/refresh 엔드포인트를 노출
+
 # ??? ?? ?? ? ??
 polar:
   greeting: Welcome to the local book catalog!
