@@ -41,4 +41,8 @@
     * ./gradlew test --tests BookValidationTests
 
 #### ch3.4.2 SpringBootTest를 통한 통합테스트
-  
+  * 테스트 진행
+    * ./gradlew test --tests CatalogServiceApplicationTests
+
+#### ch3.4.3 @WebMvcTest를 사용한 REST 컨트롤러의 테스트
+  * ./gradlew test --tests BookControllerMvcTests
