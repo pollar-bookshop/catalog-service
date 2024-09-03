@@ -10,9 +10,9 @@ jobs:
       security-events: write # 깃허브에 보안 이벤트를 제출할 수 있는 권한
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3 # 현재 깃 저장소를 체크아웃한다.
+        uses: actions/checkout@v4 # 현재 깃 저장소를 체크아웃한다.
       - name: Set up JDK
-        uses: actions/setup-java@v3 # 자바 런타임을 설치하고 설정한다.
+        uses: actions/setup-java@v4 # 자바 런타임을 설치하고 설정한다.
         with:
           distribution: temurin
           java-version: 17
@@ -26,10 +26,10 @@ jobs:
           severity-cutoff: high # 오류로 간주할 최소 수준의 보안 유형
           acs-report-enable: true # 스캔이 완료된 이후에 리포트를 생성할지 여부
       - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v2 # 깃허브로 보안 취약성 리포트 (SARIF 형식) 전송
+        uses: github/codeql-action/upload-sarif@v3 # 깃허브로 보안 취약성 리포트 (SARIF 형식) 전송
         if: success() || failure() # 이전 단계가 실패하더라도 리포트 전송
         with:
-          sarif_fail: ${{ steps.scan.outputs.sarif }} # 이전 단계 결과의 리포트를 가져온다.
+          sarif_file: ${{ steps.scan.outputs.sarif }} # 이전 단계 결과의 리포트를 가져온다.
       - name: Build, unit tests and integration tests
         # 윈도우 호환성을 해결하면서 그래들 래퍼스크립트를 실행 가능하게 만든다.
         # 코드베이스를 컴파일하고 단위 및 통합 테스트를 실행하는 그래들 빌드 작업을 수행한다.
