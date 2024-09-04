@@ -33,6 +33,6 @@ public class BookValidationTests {
         Set<ConstraintViolation<Book>> validations = validator.validate(book);
         assertThat(validations).hasSize(1);
         assertThat(validations.iterator().next().getMessage())
-                .isEqualTo("The ISBN format must be valid");
+                .isEqualTo("The ISBN format must be valid.");
     }
 }
