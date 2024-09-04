@@ -34,5 +34,6 @@ public class BookRepositoryJdbcTests {
 
         assertThat(actualBook).isPresent();
         assertThat(actualBook.get().getIsbn()).isEqualTo(book.getIsbn());
+
     }
 }
