@@ -94,6 +94,59 @@
     -p 5432:5432 \
     postgres:14.12
 
-### ch5.4 플라이웨이를 통한 프로덕션 환경에서의 데이터베이스 관리
-#### ch5.4.2 플라이웨이를 이용한 데이터베이스 스키마 초기화 
-  *
+## ch6 스프링 부트 컨테이너화
+### ch6.1 도커 컨테이너 이미지로 작업하기
+  * my-java-image 디렉토리 생성 후 Dockerfile 작성
+  * my-java-image 디렉토리에서 명령어 실행
+    * docker build -t my-java-image:1.0.0 .
+    * docker run --rm my-java-image:1.0.0
+      * 컨테이너 제거
+
+#### ch6.1.3 깃허브 컨테이너 저장소로 이미지 저장
+  * 깃허브에서 토큰 발급
+  * 터미널에서 깃허브 컨테이너 저장소로 인증을 실행
+    * docker login ghrc.io
+  * 깃허브 컨테이너 저장소에 저장하기 전에 이미지 이름을 완전하게 지정해야 함.
+    * docker tag my-java-image:1.0.0 \
+        ghcr.io/stk346/my-java-image:1.0.0
+  * 깃허브 컨테이너 저장소로 이미지를 푸쉬
+    * docker push ghcr.io/stk346/my-java-image:1.0.0
+  * 깃허브 계정에서 profile 페이지로 이동 후 Package 섹션으로 가서 my-java-image 확인
+
+### ch6.2 스프링 부트 애플리케이션을 컨테이너 이미지로 패키지
+#### ch6.2.1 스프링 부트의 컨테이너화를 위한 준비
+  * catalog-service와 postgreSQL이 IP주소나 호스트 이름 대신 컨테이너 이름을 사용해 연결할 수 있도록 네크워크 생성
+    * docker network create catalog-network
+  * 네트워크 생성 확인
+    * docker network ls
+  * postgres 컨테이너가 catalog-network를 사용하도록 설정
+    * docker run -d \
+      --name polar-postgres \
+      --net catalog-network \
+      -e POSTGRES_USER=user \
+      -e POSTGRES_PASSWORD=password \
+      -e POSTGRES_DB=polardb_catalog \
+      -p 5432:5432 \
+      postgres:14.12
+#### ch6.2.2 도커파일로 스프링 부트 컨테이너화
+  * catalog-service 루트 디렉토리에서 Dockerfile 생성
+  * catalog-service 애플리케이션을 JAR 아티펙트로 빌드
+    * ./gradlew clean bootJar
+  * JAR 파일을 컨테이너 이미지로 만듦 (현재 디렉토리의 Dockerfile로 이미지 빌드)
+    * docker build -t catalog-service .
+  * application.yml의 설정 일부를 환경변수로 덮어씀
+    * docker run -d \
+      --name catalog-service \
+      --net catalog-network \
+      -p 9001:9001 \
+      -e SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog \
+      -e SPRING_PROFILES_ACTIVE=testdata \
+      catalog-service
+  * 제대로 작동하는지 확인
+    * http :9001/books
+  * (참고) 종료된 컨테이너 모두 삭제
+    * docker container prune
+  * (참고) postgres container 실행
+  * 컨테이너 삭제
+    * docker rm -f catalog-service polar-postgres
+      postgres:14.12 

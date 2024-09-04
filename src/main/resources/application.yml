@@ -13,9 +13,6 @@ management:
       exposure:
         include: refresh # /actuator/refresh 엔드포인트를 노출
 
-polar:
-  greeting: Welcome to the local book catalog!
-
 spring:
   application:
     name: catalog-service # 설정 서버에서 설정을 필터링하는데 사용다는 애플리케이션 이름
@@ -26,7 +23,7 @@ spring:
       uri: http://localhost:8888 # 설정 서버의 URL
       request-connect-timeout: 5000 # 설정 서버에 연결될 때까지 기다리는 시간 (밀리초)
       request-read-timeout: 5000 # 설정 서버에서 설정 데이터를 읽을 때까지 기다리는 시간(밀리초)
-      fail-fast: true
+      fail-fast: false # true -> 설정 서버에 연결할 수 없는 경우 애플리케이션 즉시 실패, false -> 연결 못해도 정상 작동
       retry:
         max-attempts: 6 # 시도의 최대 횟수
         initial-interval: 1000 # 최초 재시도 지연 시간(밀리초)
@@ -35,7 +32,11 @@ spring:
   datasource:
     username: user
     password: password
+    # localhost를 가리키기 때문에 컨테이너 내에서 작동하지 않음.
     url: jdbc:postgresql://localhost:5432/polardb_catalog
     hikari:
         connection-timeout: 2000
         maximum-pool-size: 5
+
+polar:
+  greeting: Welcome to the local book catalog!
