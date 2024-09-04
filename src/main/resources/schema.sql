@@ -9,3 +9,6 @@ CREATE TABLE book (
       last_modified_date  timestamp NOT NULL,
       version             integer NOT NULL
 );
+
+ALTER TABLE book
+ADD COLUMN publisher varchar(255);
