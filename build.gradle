@@ -30,8 +30,10 @@ repositories {
 	mavenCentral()
 }
 
+// 공통 속성이나 변수를 설정
 ext {
 	set('springCloudVersion', "2023.0.3") // 사용할 스프링 클라우드 버전 정의
+	set('testcontainersVersion', "1.19.8") // 사용할 테스트컨테이너 버전을 지정
 }
 
 dependencies {
@@ -48,6 +50,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.22'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.testcontainers:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 
@@ -62,5 +65,6 @@ tasks.named('test') {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}" // 테스트컨테이너 의존성 관리를 위한 BOM
 	}
 }
