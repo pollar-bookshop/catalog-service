@@ -92,8 +92,8 @@
     -e POSTGRES_PASSWORD=password \
     -e POSTGRES_DB=polardb_catalog \
     -p 5432:5432 \
-    postgres:14.4
+    postgres:14.12
 
-### ch5.3 스프링 및 테스트컨테이너로 데이터 지속성 테스트하기
-#### ch5.3.3 @SpringBootTest 및 테스트컨테이너를 이용한 통합 테스트
-  * 
+### ch5.4 플라이웨이를 통한 프로덕션 환경에서의 데이터베이스 관리
+#### ch5.4.2 플라이웨이를 이용한 데이터베이스 스키마 초기화 
+  *

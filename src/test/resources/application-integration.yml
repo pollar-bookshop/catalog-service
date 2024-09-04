@@ -1,4 +1,4 @@
 spring:
   datasource:
     # 테스트컨테이너의 PostgreSQL의 모듈을 지정
-    url: jdbc:tc:postgresql:14.4:///
+    url: jdbc:tc:postgresql:14.12:///
