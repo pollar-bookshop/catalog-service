@@ -50,6 +50,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.22'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// PostgreSQL 데이터베이스를 Docker 컨테이너로 손쉽게 실행할 수 있게 함
 	testImplementation 'org.testcontainers:postgresql'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'

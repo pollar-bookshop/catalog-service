@@ -36,3 +36,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew build
+        # 깃 배포 성공을 위한 임시 설정 시작
+        env:
+          SPRING_CLOUD_CONFIG_ENABLED: false
+        # 깃 배포 성공을 위한 임시 설정 끝
