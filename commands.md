@@ -149,4 +149,7 @@
   * (참고) postgres container 실행
   * 컨테이너 삭제
     * docker rm -f catalog-service polar-postgres
-      postgres:14.12 
+
+#### ch6.2.3 프로덕션을 위한 컨테이너 이미지 빌드
+  * 새로운 Dockerfile로 새 컨테이너를 만듦
+  * docker build -t catalog-service .
