@@ -189,3 +189,34 @@
 ### ch6.4 배포 파이프라인: 패키지 및 등록
 #### ch6.4.2 깃허브 액션을 통한 컨테이너 이미지 등록
   * github/workflows/commit-stage.yml 파일에 코드 입력
+#### config-service도 같은 절차 적용하기
+
+## ch7 스프링 부트를 위한 쿠퍼네티스 기초
+### ch7.1 도커에서 쿠버네티스로의 이동
+#### ch7.1.1 로컬 쿠버네티스 클러스터
+  * 도커 위에 polar라는 이름으로 새로운 쿠버네티스 클러스터 생성, CPU와 메모리에 대한 리소스 제한
+    * minikube start --cpus 2 --memory 4g --driver docker --profile polar
+  * 현재 클러스터의 모든 노드 목록 얻기
+    * kubectl get nodes
+  * 상호작용할 수 있는 모든 컨텍스트 나열
+    * kubectl config get-contexts
+  * 현재 컨텍스트 확인
+    * kubectl config current-context
+  * 컨텍스트 변경
+    * _kubectl config use-context polar
+  * 클러스터 시작 및 중지, 삭제
+    * minikube start --profile polar
+    * minikube stop --profile polar
+    * minikube delete --profile polar
+#### ch7.1.2 로컬 클러스터에서 데이터 서비스 관리
+  * 쿠버네티스로 PostgreSQL 배포
+    * polar-deployement/kuberetes/platform/development/services/postgresql.yml 파일 작성
+    * development 디렉토리에서 아래 명령어 실행
+      * kubectl apply -f services
+    * PostgreSQL 컨테이너를 실행하는 파드 확인
+      * kubectl get pod
+    * 배포 취소 (동일한 폴더에서 실행) (나중에 필요할 때 실행)
+      * kubectl delete -f services
+### ch7.2 스트링 부트를 위한 쿠버네티스 배포
+#### ch7.2.1 컨테이너에서 파드로
+  * 
