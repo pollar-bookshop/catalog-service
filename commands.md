@@ -153,3 +153,26 @@
 #### ch6.2.3 프로덕션을 위한 컨테이너 이미지 빌드
   * 새로운 Dockerfile로 새 컨테이너를 만듦
   * docker build -t catalog-service .
+#### ch6.2.4 클라우드 네이티브 빌드팩을 이용한 스프링 부트 컨테이너화
+  * 스프링 부트 플러그인에서 제공하는 빌드팩을 이용해 컨테이너 빌드
+    * ./gradlew bootBuildImage
+  * catalog-service를 빌드팩이 만든 이미지를 사용해 컨테이너 실행
+    * docker run -d \
+      --platform linux/amd64 \
+      --name catalog-service \
+      --net catalog-network \
+      -p 9001:9001 \
+      -e SPRING_DATASOURCE_URL=jdbc:postgresql://polar-postgres:5432/polardb_catalog \
+      -e SPRING_PROFILES_ACTIVE=testdata \
+      catalog-service
+  * 컨테이너 및 네트워크 제거
+    * docker rm -f catalog-service polar-postgres
+    * docker network rm catalog-network
+  * 스프링 부트 플러그인에서 제공하는 빌드팩을 이용해 이미지를 만들고 저장소에 저장
+    * ./gradlew bootBuildImage \
+      --imageName ghcr.io/<My_github_username>/catalog-service \
+      --publishImage \
+      -PregistryUrl=ghcr.io \
+      -PregistryUsername=<My_github_username or organization_name> \
+      -PregistryToken=<My_github_classic_token>
+  * 깃허브 이미지 저장소에 catalog-service 이미지 저장된 것 확인 후 삭제
