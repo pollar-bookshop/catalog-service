@@ -176,3 +176,10 @@
       -PregistryUsername=<My_github_username or organization_name> \
       -PregistryToken=<My_github_classic_token>
   * 깃허브 이미지 저장소에 catalog-service 이미지 저장된 것 확인 후 삭제
+
+### ch6.3 도커 컴포즈를 통한 스프링 부트 컨테이너의 관리
+#### ch6.3.1 도커 컴포즈를 통한 컨데이터 라이프사이클 관리
+  * polar-deployment/docker/docker-compose.yml 파일 생성 후 코드 작성 후 실행
+    * docker-compose up -d
+#### ch6.3.2 스프링 부트 컨테이너 디버깅
+  * 
