@@ -1,0 +1,28 @@
+apiVersion: apps/v1 # 배포 객체에 대한 api 버전
+kind: Deployment # 생성할 객체의 유형
+metadata:
+  name: catalog-service # 배포의 이름
+  labels: # 배포에 추가할 레이블의 집합
+    app: catalog-service # 이 배포는 app=catalog-service라는 레이블을 갖는다.
+spec:
+  selector: # 확장할 파드를 선택하기 위해 사용할 레이블을 정의한다.
+    matchLabels:
+      app: catalog-service
+  template: # 파드 생성을 위한 템플릿
+    metadata:
+      labels: # 파드 객체에 추가되는 레이블. 레이블은 셀렉터로 사용하는 것과 일치해야 한다.
+        app: catalog-service
+    spec:
+      containers: # 파드 내 컨테이너의 목록(이 경우 하나)
+      - name: catalog-service # 파드 이름
+        image: catalog-service # 컨테이너를 실행하기 위해 사용할 이미지. 태그가 정의되지 않으면 latest가 암묵적으로 사용된다.
+        imagePullPolicy: IfNotPresent # 이미자가 로컬에 없는 경우에만 컨테이너 저장소에서 이미지를 다운로드 받을 것을 쿠버네티스에게 지시한다.
+        ports:
+          - containerPort: 9001 # 컨테이너 노드에 의해 노출되는 포트
+        env: # 파드로 전달되는 환경 변수의 목록
+          - name: BPL_JVM_THREAD_COUNT # 메모리 계산을 위한 스레드의 수를 설정하기 위한 패키토 빌드팩 환경 변수
+            value: "50"
+          - name: SPRING_DATASOURCE_URL # 이전에 배포된 PostgreSQL 파드를 가리키는 spring.datasource.url 속성의 값
+            value: jdbc:postgresql://polar-postgres/polardb_catalog
+          - name: SPRING_PROFILES_ACTIVE # "testdata" 스프링 프로파일 활성화
+            value: testdata

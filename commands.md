@@ -218,5 +218,19 @@
     * 배포 취소 (동일한 폴더에서 실행) (나중에 필요할 때 실행)
       * kubectl delete -f services
 ### ch7.2 스트링 부트를 위한 쿠버네티스 배포
-#### ch7.2.1 컨테이너에서 파드로
-  * 
+#### ch7.2.3 스프링 부트 애플리케이션을 위한 배포 객체 생성
+  * catalog-service/k8s/deployment.yml 생성 후 코드 작성
+  * 카탈로그 서비스를 위한 이미지 하나 더 만들기
+    * ./gradlew bootBuildImage
+  * 수동으로 로컬 클러스터에 이미지 불러오기 (기본적으로 미니큐브는 로컬 컨테이너 이미지에 엑세스할 수 없음)
+    * minikube image load catalog-service --profile polar
+  * 매니페스트에서 배포 객체를 생성
+    * kubectl apply -f k8s/deployment.yml
+  * 어떤 객체가 만들어졌는지 확인
+    * kubectl get all -l app=catalog-service
+  * catalog-service가 올바르게 시작됐는지 확인하기 위해 배포 로그 확인
+    * kubectl logs deployment/catalog-service
+  * 오류에 대한 자세한 정보 얻기
+    * kubectl describe pod <pod_name>
+  * 파드 인스턴스에서 애플리케이션 로그 보기
+    * kubectl logs <pod_name>
