@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Import(DataConfig.class)
 // 내장 테스트 데이터베이스 사용을 비활성
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ActiveProfiles("integration")
 public class BookRepositoryJdbcTests {
 
     @Autowired
@@ -35,6 +36,5 @@ public class BookRepositoryJdbcTests {
 
         assertThat(actualBook).isPresent();
         assertThat(actualBook.get().getIsbn()).isEqualTo(book.getIsbn());
-
     }
 }
