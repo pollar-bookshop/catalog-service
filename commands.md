@@ -182,4 +182,10 @@
   * polar-deployment/docker/docker-compose.yml 파일 생성 후 코드 작성 후 실행
     * docker-compose up -d
 #### ch6.3.2 스프링 부트 컨테이너 디버깅
-  * 
+  * 도커 컴포즈 파일 중 catalog-service 항목에 디버깅을 위한 설정 추가 후 해당 디렉토리에서 다시 실행
+    * docker-compose up -d
+  * 종료
+    * docker-compose down
+### ch6.4 배포 파이프라인: 패키지 및 등록
+#### ch6.4.2 깃허브 액션을 통한 컨테이너 이미지 등록
+  * github/workflows/commit-stage.yml 파일에 코드 입력
