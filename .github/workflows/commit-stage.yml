@@ -64,12 +64,14 @@ jobs:
           distribution: temurin
           java-version: 17
           cache: gradle
+
       - name: Build container image
         # 컨테이너 이미지를 빌드하고 릴리스 후보를 위한 이름을 정의하기 위해 스프링 부트의 빌드팩 통합을 사용한다.
         run: |
           chmod +x gradlew 
           ./gradlew bootBuildImage \
             --imageName ${{ env.REGISTRY }}${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+
       - name: OCI image vulnerability scanning
         uses: anchore/scan-action@v3
         id: scan
@@ -78,16 +80,23 @@ jobs:
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
           fail-build: false # 이미지에서 취약점이 발견돼도 빌드를 실패로 만들지 않는다.args:
           severity-cutoff: high
-      - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure()
-        with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      # 배포 중 아래 예외 발생
+      # Processing sarif files: ["./results.sarif"]
+      #  Validating ./results.sarif
+      #  Error: Invalid SARIF. JSON syntax error: Unexpected end of JSON input
+#      - name: Upload vulnerability report
+#        uses: github/codeql-action/upload-sarif@v3
+#        if: success() || failure()
+#        with:
+#          sarif_file: ${{ steps.scan.outputs.sarif }}
+
       - name: Log into container registry
         uses: docker/login-action@v3 # 깃허브 컨테이너 저장소와 인증한다.
         with:
           registry: ${{ env.REGISTRY }} # 저장소 정보는 환경 변수로 정의된다.
           username: ${{ github.actor }} # 깃허브 액션이 제공하는 현재 사용자의 깃허브 유저명
           paaword:  ${{ secrets.GITHUB_TOKEN }} # 저장소와 인증하기 위해 필요한 토큰. 깃허브 액션이 제공한다.
+
       - name: Publish container image # 릴리스 후보를 저장소로 푸시한다.
         run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
