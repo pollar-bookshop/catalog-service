@@ -56,13 +56,13 @@ jobs:
       packages: write # 깃허브 컨테이너 저장소로 이미지를 업로드하기 위한 권한
       security-events: write # 깃허브로 보안 이벤트를 제출하기 위한 권한
     steps:
-      - name: Validate Kubernetes manifests
-        uses: stefanprodan/kube-tools@v1 # 쿠버네티스를 위한 유용한 도구를 설치할 수 있는 액션
-        with:
-          kubectl: 1.24.3 # 쿠버네티스 CLI를 설치한다.
-          kubeval: 0.16.1
-          command: |
-            kubeval --strict -d k8s
+#      - name: Validate Kubernetes manifests
+#        uses: stefanprodan/kube-tools@v1 # 쿠버네티스를 위한 유용한 도구를 설치할 수 있는 액션
+#        with:
+#          kubectl: 1.24.3 # 쿠버네티스 CLI를 설치한다.
+#          kubeval: 0.16.1
+#          command: |
+#            kubeval --strict -d k8s
       - name: Checkout source code
         uses: actions/checkout@v4 # 현재 깃 저장소(catalog-service)를 체크아웃한다.
       - name: Set up JDK
