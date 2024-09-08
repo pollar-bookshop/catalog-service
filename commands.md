@@ -255,3 +255,18 @@
   * k8s/deployment.yml에 설정 추가
   * 수정한 배포 객체를 적용 (기존 파드를 제거하고 우아한 종료가 설정된 새로운 파드를 생성)
     * kubectl apply -f k8s/deployment.yml
+#### ch7.4.3 스프링 부트 애플리케이션 확장
+  * k8s/deployment.yml 파일 수정 (복제본 2개로 설정)
+  * 수정 내용 적용
+    * kubectl apply -f k8s/deployment.yml
+  * 결과 확인 (복제본 2개)
+    * kubectl get pods -l app=catalog-service
+  * 복제본 두 개중 하나 삭제 시도
+    * kubectl delete pod <pod-name>
+  * 결과 확인 (복제본 2개)
+    * kubectl get pods -l app=catalog-service
+  * k8s/deployment.yml 파일 수정 (다시 복제본 1개로 설정)
+  * 클러스터 정리 (catalog-service에서 실행)
+    * kubectl delete -f k8s
+  * PostgreSQL 삭제 (polar-deployment/kubernetes/platform/development에서 실행)
+    * kubectl delete -f services
