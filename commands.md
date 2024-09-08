@@ -329,4 +329,6 @@
   * polar-deployment/docker 디렉터리 이동 후 아래 코드 실행
     * docker-compose up -d polar-postgres
 #### ch.8.2.3 리액티브 스트림을 이용한 비즈니스 로직 구현
-  
+#### ch8.2.4 스프링 웹플럭스로 REST API 노출
+  * 주문 요청
+    * http POST :9002/orders isbn=1234567890 quantity=3
