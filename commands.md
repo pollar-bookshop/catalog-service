@@ -234,3 +234,15 @@
     * kubectl describe pod <pod_name>
   * 파드 인스턴스에서 애플리케이션 로그 보기
     * kubectl logs <pod_name>
+
+### ch7.3 서비스 검색 및 부하 분산
+#### ch7.3.4 쿠버네티스 서비스를 통한 스프링 부트 애플리케이션 노출
+  * catalog-service/k8s.service.yml 파일 추가
+  * 매니페스트를 사용한 서비스 객체 생성 (루트 객체에서 아래 코드 실행)
+    * kubectl apply -f k8s/service.yml
+  * 결과 확인
+    * kubectl get svc -l app=catalog-service
+  * 로컬 컴퓨터에 포트 노출(포트 포워딩)
+    * kubectl port-forward service/catalog-service 9001:80
+  * 결과 확인
+    * localhost:9001/books
