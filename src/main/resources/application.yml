@@ -1,5 +1,6 @@
 server:
   port: 9001
+  shutdown: graceful
   tomcat:
     connection-timeout: 2s
     keep-alive-timeout: 15s
@@ -16,6 +17,8 @@ management:
 spring:
   application:
     name: catalog-service # 설정 서버에서 설정을 필터링하는데 사용다는 애플리케이션 이름
+  lifecycle:
+    timeout-per-shutdown-phase: 15s # 우아한 종료 시 15초의 종료 기간을 둠
   config:
     import: "optional:configserver:" # 가능하면 configserver에서 설정 데이터를 가져온다
   cloud:

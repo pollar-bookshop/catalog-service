@@ -17,6 +17,10 @@ spec:
       - name: catalog-service # 파드 이름
         image: catalog-service # 컨테이너를 실행하기 위해 사용할 이미지. 태그가 정의되지 않으면 latest가 암묵적으로 사용된다.
         imagePullPolicy: IfNotPresent # 이미자가 로컬에 없는 경우에만 컨테이너 저장소에서 이미지를 다운로드 받을 것을 쿠버네티스에게 지시한다.
+        lifecycle:
+          preStop: # 쿠버네티스가 파드에 SIGTERM 신호를 보내기 전에 5초를 기다리게 한다.
+            exec:
+              command: ["sh", "-c", "sleep 5"]
         ports:
           - containerPort: 9001 # 컨테이너 노드에 의해 노출되는 포트
         env: # 파드로 전달되는 환경 변수의 목록

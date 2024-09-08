@@ -246,3 +246,12 @@
     * kubectl port-forward service/catalog-service 9001:80
   * 결과 확인
     * localhost:9001/books
+### ch7.4 확장성과 일회성
+#### ch7.4.2 일회성을 위한 조건: 우아한 종료
+  * src/main/recources/application.yml 파일에 코드 추가
+  * 애플리케이션 소스 코드를 수정했기 때문에 새로운 컨테이너 이미지를 만들어 미니큐브에 로드
+    * ./gradlew bootBuildImage
+    * minikube image load catalog-service --profile polar
+  * k8s/deployment.yml에 설정 추가
+  * 수정한 배포 객체를 적용 (기존 파드를 제거하고 우아한 종료가 설정된 새로운 파드를 생성)
+    * kubectl apply -f k8s/deployment.yml
