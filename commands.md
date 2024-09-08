@@ -303,3 +303,12 @@
       * polar-deployment/kubernetes/platform/development에서 커맨드 실행
         * kubectl delete -f services
       * minikube stop --profile polar
+### ch7.6 배포 파이프라인: 쿠버네티스 매니페스트 유효성 검사
+#### ch7.6.1 커밋 단계에서 쿠버네티스 매니페스트 검증
+  * 큐비발(kubeval) 설치
+    * https://github.com/instrumenta/kubeval/releases 에서 kubeval-darwin-amd64.tar.gz 파일 다운 후 압축 풀기
+    * 큐비발 파일 실행 가능한 위치로 옮기기
+      * sudo mv kubeval /usr/local/bin
+    * catalog-service 루트 폴더에서 아래 명령어 실행
+      * kubeval --strict -d k8s
+        * k8s 디렉터리 내의 쿠버네티스 매니페스트가 유효한지 검사한다.
