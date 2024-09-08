@@ -1,3 +1,4 @@
+# 1부 클라우드 네이티브 개요
 ## ch2
   * 도커 이미지 빌드하기
     * ./gradlew bootBuildImage
@@ -25,6 +26,7 @@
   * 클러스터 중지
     * minikube stop
 
+# 2부 클라우드 네이티브 개발
 ## ch3
   * ./gradlew bootJar
     * build/libs/catalog-service-0.0.1-SNAPSHOT.jar 파일 생성
@@ -315,3 +317,10 @@
 #### ch7.6.2 깃허브 액션을 통한 쿠버네티스 매티페스트 유효성 검사 자동화
   * catalog-service/github/workflow/commit-stage.yml 파일 수정
   * main 브랜치에 푸쉬 후 워크플로 성공하는지 확인
+
+# 3부 클라우드 네이티브 분산 시스템
+## ch8 리액티브 스프링: 복원력과 확장성
+### ch8.2 스프링 웹플럭스와 스프링 데이터 R2DBC를 갖는 리액티브 서버
+#### ch8.2.1 스프링 부트를 통한 리액티브 애플리케이션 부트스트래핑
+  * 
+
