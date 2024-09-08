@@ -270,3 +270,24 @@
     * kubectl delete -f k8s
   * PostgreSQL 삭제 (polar-deployment/kubernetes/platform/development에서 실행)
     * kubectl delete -f services
+### ch7.5 틸트를 사용한 로컬 쿠버네티스 개발
+#### ch7.5.1 틸트를 사용한 내부 개발 루트
+  * 틸트 설치
+    * brew install tilt-dev/tap/tilt
+  * 아래의 단계를 자동화 하는 워크플로를 설계
+    * 클라우드 네이티브 빌드팩을 사용해 스프링 부트 애플리케이션을 컨테이너 이미지로 패키징
+    * 이미지를 쿠버네티스 클러스터에 업로드
+    * YAML 매니페스트에 선언된 모든 쿠버네티스 객체를 적용한다.
+    * 로컬 컴퓨터에서 애플리케이션에 엑세스할 수 있도록 포트 전달을 활성화한다.
+    * 클러스터에서 실행 중인 애플리케이션의 로그에 쉽게 엑세스한다.
+  * 로컬 쿠버네티스에서 PostgreSQL 인스턴스 실행
+    * polar-deployment/kubernetes/platform/development 이동 후 아래 코드 실행
+      * kubectl apply -f services
+  * catalog-service/Tiltfile 생성
+  * catalog-service 루트 폴더에서 아래 코드 실행
+    * tilt up
+  * 실행 확인
+    * http://localhost:10350
+    * http :9001/books
+  * 배포된 애플리케이션 중지
+    * tile down
