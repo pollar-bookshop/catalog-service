@@ -312,3 +312,6 @@
     * catalog-service 루트 폴더에서 아래 명령어 실행
       * kubeval --strict -d k8s
         * k8s 디렉터리 내의 쿠버네티스 매니페스트가 유효한지 검사한다.
+#### ch7.6.2 깃허브 액션을 통한 쿠버네티스 매티페스트 유효성 검사 자동화
+  * catalog-service/github/workflow/commit-stage.yml 파일 수정
+  * main 브랜치에 푸쉬 후 워크플로 성공하는지 확인
