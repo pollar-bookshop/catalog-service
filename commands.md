@@ -322,5 +322,10 @@
 ## ch8 리액티브 스프링: 복원력과 확장성
 ### ch8.2 스프링 웹플럭스와 스프링 데이터 R2DBC를 갖는 리액티브 서버
 #### ch8.2.1 스프링 부트를 통한 리액티브 애플리케이션 부트스트래핑
-  * 
-
+  * order-service/src/main/resources/application.yml 파일 작성
+#### ch8.2.2 스프링 데이터 R2DBC를 사용한 리액티브 데이터 지속성
+  * polar-deployment/docker/postgresql/init.sql 파일 추가
+  * polar-deployment/docker/docker-compose.yml 파일 수정
+  * polar-deployment/docker 디렉터리 이동 후 아래 코드 실행
+    * docker-compose up -d polar-postgres
+  
