@@ -291,3 +291,15 @@
     * http :9001/books
   * 배포된 애플리케이션 중지
     * tile down
+#### ch7.5.2 옥탄트를 사용한 쿠버네티스 워크로드 시각화
+  * 옥탄트 설치
+    * 아래 페이지에서 octant_0.25.0_macOS-arm64.tar.gz 파일 다운 후 압축 풀기
+      * https://github.com/vmware-archive/octant/releases/v0.25.0
+    * 옥탄트 파일 실행 가능한 위치로 옮기기
+      * sudo mv octant /usr/local/bin
+    * octant 명령어로 실행 확인
+    * 프로젝트 종료 및 클러스터 종료
+      * tilt down
+      * polar-deployment/kubernetes/platform/development에서 커맨드 실행
+        * kubectl delete -f services
+      * minikube stop --profile polar
