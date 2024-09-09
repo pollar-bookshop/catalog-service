@@ -333,5 +333,7 @@
   * 주문 요청
     * http POST :9002/orders isbn=1234567890 quantity=3
 ### ch8.3 스프링 웹 클라이언트를 사용한 리액티브 클라이언트
-#### ch8.3.1 스프링에서 서비스 간 통신
-  * 
+#### ch8.3.3 웹 클라이언트를 통한 REST 클라이언트 구현
+  * catalog-service 실행
+  * 주문 요청 보내기
+    * http POST :9002/orders isbn=1234567891 quantity=3

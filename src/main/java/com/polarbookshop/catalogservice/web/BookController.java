@@ -23,7 +23,12 @@ public class BookController {
 
     @GetMapping("{isbn}")
     public Book getByIsbn(@PathVariable String isbn) {
-        return bookService.viewBookDetails(isbn);
+        System.out.println("[received]: books/" + isbn);
+        Book book = bookService.viewBookDetails(isbn);
+        System.out.println("=== book information start ===");
+        book.toString();
+        System.out.println("=== book information end ===");
+        return book;
     }
 
     @PostMapping

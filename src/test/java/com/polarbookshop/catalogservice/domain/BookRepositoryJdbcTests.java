@@ -1,6 +1,7 @@
 package com.polarbookshop.catalogservice.domain;
 
 import com.polarbookshop.catalogservice.config.DataConfig;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -36,5 +37,12 @@ public class BookRepositoryJdbcTests {
 
         assertThat(actualBook).isPresent();
         assertThat(actualBook.get().getIsbn()).isEqualTo(book.getIsbn());
+    }
+
+    @DisplayName("")
+    @Test
+    void test() {
+        String isbn = "1234567891";
+        Book book = bookRepository.findByIsbn(isbn).get();
     }
 }
