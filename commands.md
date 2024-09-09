@@ -337,3 +337,5 @@
   * catalog-service 실행
   * 주문 요청 보내기
     * http POST :9002/orders isbn=1234567891 quantity=3
+### ch8.4 리액티브 스프링을 통한 복원력 높은 애플리케이션
+#### ch8.4.1 타임아웃
