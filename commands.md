@@ -414,7 +414,7 @@
 ## ch10 이벤트 중심 애플리케이션과 함수
 ### ch10.1 이벤트 중심 아키텍처
 ### ch10.2 메시지 브로커와 래빗MQ
-#### 10.2.2 발행/구독 통신을 위한 래빗MQ 사용
+#### ch10.2.2 발행/구독 통신을 위한 래빗MQ 사용
   * rabbitmq 컨테이너 정의
     * polar-deployment/docker/docker-compose.yml에 코드 추가
     * polar-deployment/docker/rabbitmq/rabbitmq.conf 파일 추가
@@ -424,5 +424,8 @@
       * http://localhost:15672
     * 컨테이너 종료
       * docker-compose down
+
+### ch10.3 스프링 클라우드 함수를 통한 함수
+#### ch10.3.1 스프링 클라우드 함수의 함수적 패러다임 사용
 
 
