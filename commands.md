@@ -375,3 +375,24 @@
 
 ### ch9.4 레디스를 통한 분산 세션 관리
 #### ch9.4.1 스프링 세션 데이터 레디스를 통한 세션 처리
+
+### ch9.5 쿠버네티스 인그레스를 통한 외부 엑세스 관리
+#### ch9.5.1 인그레스 API와 인그레스 컨트롤러 이해
+  * 인그레스 NGINX를 쿠버네티스에 적용
+    * 미니큐브로 polar 클러스터 실행
+      * minikube start --cpus 2 --memory 4g --driver docker --profile polar
+    * ingress 애드온 활성화 -> 인그레스 NGINX가 로컬 클러스터에 배포됨
+      * minikube addons enable ingress --profile polar
+    * 배포된 ingress-nginx 구성 요소 확인
+      * kubectl get all -n ingress-nginx
+        * -n ingress-nginx: ingress-nginx라는 네임스페이스 내에 존재하는 모든 객체를 가져옴
+    * polar-bookshop 애플리케이션이 사용하는 지원 서비스 배포
+      * polar-deployment/kubernetes/platform/development에 파일 작성
+      * 해당 디렉터리에서 아래 명령어 실행
+        * kubectl apply -f services
+      * 결과 확인
+        * kubectl get deployment
+      * 에지 서비스를 컨테이너 이미지로 패키징 및 쿠버네티스 클러스터에 아티펙트를 로드
+        * edge-service 루트 디렉터리에서 아래 코드 실행
+          * ./gradlew bootBuildImage
+          * minikube image load edge-service --profile polar
