@@ -363,3 +363,7 @@
       * ./gradlew bootRun
       * 21개의 POST 요청
         * ab -n 21 -c 1 -m POST http://localhost:9000/orders
+
+### ch9.3 스프링 클라우드 게이트웨이와 레디스를 통한 요청 사용률 제한
+#### ch9.3.1 레디스 컨테이너 실행
+  * 
