@@ -396,3 +396,17 @@
         * edge-service 루트 디렉터리에서 아래 코드 실행
           * ./gradlew bootBuildImage
           * minikube image load edge-service --profile polar
+#### ch9.5.2 인그레스 객체 사용
+  * 미니큐브 클러스터에 할당된 ip주소 검색
+    * minikube ip --profile polar
+  * 맥에서는 애드온이 미니큐브 클러스터의 IP 주소를 사용하는 것을 지원하지 않음.
+    * 클러스터를 로컬 환경에 노출한 후에 127.0.0.1 주소를 통해 클러스터 호출
+    * sudo minikube tunnel --profile polar
+  * 인그레스 객체 정의 (edge-service/k8s/ingress.yml 파일 작성)
+  * edge-service에서 아래 코드 실행
+    * kubectl apply -f k8s
+  * 인그레스 객체가 올바르게 생성됐는지 확인
+    * kubectl get ingress
+  * 로컬 쿠버네티스 클러스터 중지 및 삭제
+    * minikube stop --profile polar
+    * minikube delete --profile polar
