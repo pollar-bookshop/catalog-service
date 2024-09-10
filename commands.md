@@ -357,7 +357,9 @@
 #### ch9.1.3 필터를 통한 요청 및 응답 처리
 
 ### ch9.2 스프링 클라우드 서킷 브레이커와 Resilience5J로 내결함성 개선하기
-#### ch9.2.3 스프링 웹플럭스를 이용한 폴백 REST API 정의
-
-
-
+#### ch9.2.4 서킷 브레이커, 재시도 및 시간 제한의 결합
+  * 서킷브레이커 테스트
+    * catalog-service, order-service가 실행되지 않은 상태에서 아래 코드 실행
+      * ./gradlew bootRun
+      * 21개의 POST 요청
+        * ab -n 21 -c 1 -m POST http://localhost:9000/orders
