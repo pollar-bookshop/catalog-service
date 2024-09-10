@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("books")
+@RequestMapping("/books")
 public class BookController {
 
     private final BookService bookService;
@@ -16,12 +16,12 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping
+    @GetMapping("")
     public Iterable<Book> get() {
         return bookService.viewBookList();
     }
 
-    @GetMapping("{isbn}")
+    @GetMapping("/{isbn}")
     public Book getByIsbn(@PathVariable String isbn) {
         System.out.println("[received]: books/" + isbn);
         Book book = bookService.viewBookDetails(isbn);
@@ -31,7 +31,7 @@ public class BookController {
         return book;
     }
 
-    @PostMapping
+    @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public Book post(@Valid @RequestBody Book book) {
         return bookService.addBookToCatalog(book);

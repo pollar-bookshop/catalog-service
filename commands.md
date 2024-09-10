@@ -343,6 +343,16 @@
 
 ## ch9 API 게이트웨이와 서킷 브레이커
 ### ch9.1 에지 서버와 스프링 클라우드 게이트웨이
-#### ch9.1.1 스프링 클라우드 게이트웨이를 이용한 에지 서버 부트스트래핑
+#### ch9.1.2 경로와 술어 정의
+  * application.yml 파일 작성 후 도커로 서비스, PostgreSQL 실행, 에지 서버는 로컬 JVM으로 실행
+    * 각 프로젝트 루트 폴더에서 ./gradlew bootBuildImage 실행해 컨테이너 이미지로 패키징
+    * polar-deployment/docker 폴더에서 아래 코드 실행 (order-service에 깃허브에 이미지 등록하기 위한 yml파일 작성돼 있고, 이미지가 push돼 있어야 함)
+    * docker-compose up -d catalog-service order-service
+      * 위 서비스는 PostgreSQL을 사용하기 때문에 도커 컴포즈는 PostgreSQL 컨테이너도 실행한다.
+    * edge-service 루트에서 아래 코드 실행
+      * .gradlew bootRun
+  * 책과 주문에 대한 요청을 API게이트웨이로 전송
+    * http :9000/books
+    * http :9000/orders
 
 
