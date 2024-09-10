@@ -373,3 +373,5 @@
       * X-RateLimit-Replenish-Rate: 10
       * X-RateLimit-Requested-Tokens: 1
 
+### ch9.4 레디스를 통한 분산 세션 관리
+#### ch9.4.1 스프링 세션 데이터 레디스를 통한 세션 처리
