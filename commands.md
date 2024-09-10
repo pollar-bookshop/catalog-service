@@ -410,3 +410,19 @@
   * 로컬 쿠버네티스 클러스터 중지 및 삭제
     * minikube stop --profile polar
     * minikube delete --profile polar
+
+## ch10 이벤트 중심 애플리케이션과 함수
+### ch10.1 이벤트 중심 아키텍처
+### ch10.2 메시지 브로커와 래빗MQ
+#### 10.2.2 발행/구독 통신을 위한 래빗MQ 사용
+  * rabbitmq 컨테이너 정의
+    * polar-deployment/docker/docker-compose.yml에 코드 추가
+    * polar-deployment/docker/rabbitmq/rabbitmq.conf 파일 추가
+    * polar-deployment/docker에서 아래 코드 실행
+      * docker-compose up -d polar-rabbitmq
+    * 래빗MQ 관리 콘솔 확인
+      * http://localhost:15672
+    * 컨테이너 종료
+      * docker-compose down
+
+
