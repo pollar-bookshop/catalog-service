@@ -365,4 +365,11 @@
         * ab -n 21 -c 1 -m POST http://localhost:9000/orders
 
 ### ch9.3 스프링 클라우드 게이트웨이와 레디스를 통한 요청 사용률 제한
-#### ch9.3.2 스프링과 레디스의 통합
+#### ch9.3.3 요청 사용률 제한 설정
+  * 필요한 설정, 클래스 생성 완료 후 아래 커맨드 실행 후 응답 확인
+    * http :9000/books
+      * X-RateLimit-Burst-Capacity: 20
+      * X-RateLimit-Remaining: 19
+      * X-RateLimit-Replenish-Rate: 10
+      * X-RateLimit-Requested-Tokens: 1
+
