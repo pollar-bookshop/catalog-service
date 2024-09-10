@@ -38,11 +38,4 @@ public class BookRepositoryJdbcTests {
         assertThat(actualBook).isPresent();
         assertThat(actualBook.get().getIsbn()).isEqualTo(book.getIsbn());
     }
-
-    @DisplayName("")
-    @Test
-    void test() {
-        String isbn = "1234567891";
-        Book book = bookRepository.findByIsbn(isbn).get();
-    }
 }
