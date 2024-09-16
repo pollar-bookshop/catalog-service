@@ -469,8 +469,21 @@
 ### ch11.2 키클록을 통한 사용자 계정 관리
   * deploy-service - docker-compose 파일에 키클록 관련 메니페스트 작성 후 구동
     * docker-compose up -d polar-keycloak
+#### ch11.2.1 보안 영역 정의
+  * 애플리케이션에 대한 보안 영역을 별도로 만들기
+    * 키클록 컨테이너 안으로 배시 콘솔을 통해 접속
+      * docker exec -it polar-keycloak bash
+    * 키클록 어드민 CLI 스크립트가 있는 폴더로 이동
+      * cd /opt/keycloak/bin
+    * 어드민 CLI를 사용하기 위해 도커 컴포즈에서 정의한 사용자 이름과 패스워드 제공
+      * ./kcadm.sh config credentials \
+        --server http://localhost:8080 \
+        --realm master \
+        --user user \
+        --password password
+    * 폴라 북숍에 대한 새로운 보안 영역 만들기
+      * ./kcadm.sh create realms -s realm=PolarBookshop -s enabled=true
 
-    
 
 
 ### [참고] 에러 핸들링
