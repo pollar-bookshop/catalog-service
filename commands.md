@@ -504,6 +504,32 @@
     * ./kcadm.sh set-password -r PolarBookshop \
       --username bjorn --new-password password
 
+### ch11.3 오픈ID 커넥트, JWT 및 키클록을 통한 인증
+#### ch11.3.3 키클록에서 애플리케이션 등록
+  * 키클록 컨테이너 내의 배시 콘솔로 이동
+    * docker exec -it polar-keycloak bash
+  * 키클록 어드민 CLI 스크립트가 있는 폴더로 이동
+    * cd /opt/keycloak/bin
+  * 인증된 세션 시작
+    * ./kcadm.sh config credentials \
+      --server http://localhost:8080 \
+      --realm master \
+      --user user \
+      --password password
+  * edge-service를 PolarBookshop 영역에 OAuth2 클라이언트로 등록
+    * ./kcadm.sh create clients -r PolarBookshop \
+      -s clientId=edge-service \
+      -s enabled=true \
+      -s publicClient=false \
+      -s secret=polar-keycloak-secret \
+      -s 'redirectUris=["http://localhost:9000",
+                        "http://localhost:9000/login/oauth2/code/*"]'
+  * 키클록 컨테이너를 시작할 때 전체 설정을 로드하기 위한 설정
+    * polar-deployment/docker/keycloak/realm-config.json 파일에 코드 작성
+    * polar-deployment/docker/docker-compose.yml 파일 수정
+    * 진행하기 전에 실행 중인 컨테이너를 모두 중지
+      * docker-compose down
+
 
 
 ### [참고] 에러 핸들링
