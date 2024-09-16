@@ -441,6 +441,10 @@
     * ./gradlew bootRun
   * 래빗MQ 관리 콘솔 연결해 로그인 및 exchanges에 생성자, 소비자 생성됐는지 확인
     * http://localhost:15672
+    
+### ch10.5 스프링 클라우드 스트림을 통한 메시지 생성 및 소비
+#### ch10.5.1 이벤트 소비자 구현 및 멱등성 문제
+  * 
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
