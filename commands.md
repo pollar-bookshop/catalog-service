@@ -466,6 +466,10 @@
     * docker-compose up -d polar-redis
   * edge-service 실행 후 localhost:9000/books 이동
     * 스프링 시큐리티가 제공하는 로그인 페이지로 리다이렉팅된것 확인
+### ch11.2 키클록을 통한 사용자 계정 관리
+  * deploy-service - docker-compose 파일에 키클록 관련 메니페스트 작성 후 구동
+    * docker-compose up -d polar-keycloak
+
     
 
 
