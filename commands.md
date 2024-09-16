@@ -443,8 +443,22 @@
     * http://localhost:15672
     
 ### ch10.5 스프링 클라우드 스트림을 통한 메시지 생성 및 소비
-#### ch10.5.1 이벤트 소비자 구현 및 멱등성 문제
-  * 
+#### ch10.5.2 이벤트 생성자 구현과 원자성 문제
+  * 주문 흐름 살펴보기
+    * 래빗MQ와 PostgreSQL 시작
+      * docker-compose up -d polar-rabbitmq polar-postgres
+    * 배송 서비스, 카탈로그, 주문 서비스 실행
+    * 카탈로그에 도서를 새로 추가
+      * http POST :9001/books author="Jon Snow" \
+                              title="All I don't know about the Arctic" \
+                              isbn="1234567897" \
+                              price=9.90 publisher="Polarsophia"
+    * 책 3권 주문
+      * http POST :9002/orders isbn=1234567897 quantity=3
+    * 결과 확인
+      * http :9002/orders
+      * "status": "DISPATCHED", 상태여야 함
+    * 모든 컨테이너 중지 및 애플리케이션 중지
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
