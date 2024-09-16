@@ -434,5 +434,14 @@
 #### ch10.3.3 @FunctionalSpringBootTest를 통한 통합 테스트
 
 ### ch10.4 스프링 클라우드 스트림을 통한 메시지 처리
-#### ch10.4.1 래빗MQ와의 통합 설정
-  * 
+#### ch10.4.2 함수의 메시지 채널 바인딩
+  * polar-deployment/docker에서 아래 커멘드 실행
+    * docker-compose up -d polar-rabbitmq
+  * dispatcher-service 루트에서 아래 커멘드 실행
+    * ./gradlew bootRun
+  * 래빗MQ 관리 콘솔 연결해 로그인 및 exchanges에 생성자, 소비자 생성됐는지 확인
+    * http://localhost:15672
+
+### [참고] 에러 핸들링
+  * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
+    * sudo ln -s "$HOME/.docker/run/docker.sock" /var/run/docker.sock
