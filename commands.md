@@ -483,6 +483,26 @@
         --password password
     * 폴라 북숍에 대한 새로운 보안 영역 만들기
       * ./kcadm.sh create realms -s realm=PolarBookshop -s enabled=true
+#### ch11.2.2 사용자 및 역할 관리
+  * 키클록 어드민 CLI 콘솔에서 폴라 북숍 영역에 두 가지 역할 만들기
+    * ./kcadm.sh create roles -r PolarBookshop -s name=employee
+    * ./kcadm.sh create roles -r PolarBookshop -s name=customer
+  * 두 명의 사용자 만들기
+    * ./kcadm.sh create users -r PolarBookshop \
+      -s username=isabelle \
+      -s firstName=Isabelle \
+      -s lastName=Dahl \
+      -s enabled=true
+    * ./kcadm.sh create users -r PolarBookshop \
+      -s username=bjorn \
+      -s firstName=Bjorn \
+      -s lastName=Vinterberg \
+      -s enabled=true
+  * 두 명의 사용자 패스워드 임의 지정
+    * ./kcadm.sh set-password -r PolarBookshop \
+      --username isabelle --new-password password
+    * ./kcadm.sh set-password -r PolarBookshop \
+      --username bjorn --new-password password
 
 
 
