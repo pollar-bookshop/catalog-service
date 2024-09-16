@@ -460,6 +460,15 @@
       * "status": "DISPATCHED", 상태여야 함
     * 모든 컨테이너 중지 및 애플리케이션 중지
 
+## ch11 보안: 인증과 SPA
+### ch11.1 스프링 보안 기초
+  * edge-service가 필요로 하는 레디스 컨데이터 시작
+    * docker-compose up -d polar-redis
+  * edge-service 실행 후 localhost:9000/books 이동
+    * 스프링 시큐리티가 제공하는 로그인 페이지로 리다이렉팅된것 확인
+    
+
+
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
     * sudo ln -s "$HOME/.docker/run/docker.sock" /var/run/docker.sock
