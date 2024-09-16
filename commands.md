@@ -542,7 +542,14 @@
   * edge-service 애플리케이션 실행
   * http://localhost:9000/user 이동 후 이전에 등록한 사용자로 로그인
     * /user 엔드포인트로 리다이렉션 되는지 확인
-#### ch11.4.5 스프링 보안 및 키클록에서 사용자 로그아웃 설정
+### ch11.5 스프링 보안과 SPA 통함
+### ch11.5.1 앵귤러 애플리케이션 실행
+  * 도커 컴포즈 파일에서 패키징된 앵귤러 애플리케이션 이미지 불러오기
+    * deploy-service/docker/docker-compose.yml에 코드 추가
+  * edge-service - application.yml에 코드 추가
+  * ui, 레디스, 키클록 컨테이너 실행
+  * edge-service 애플리케이션 실행
+  * http://localhost:9000 열고 등록한 사용자로 로그인
 
 
 
