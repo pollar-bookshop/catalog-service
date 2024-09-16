@@ -530,7 +530,13 @@
     * 진행하기 전에 실행 중인 컨테이너를 모두 중지
       * docker-compose down
 ### ch11.4 스프링 보안 및 오픈ID 커넥트로 사용자 인증
-#### ch11.4.2 스프링 보안과 키클록의 통합 설정
+#### ch11.4.3 기초적인 스프링 보안 설정
+  * 컨테이너 활성화
+    * docker-compose up -d polar-redis polar-keycloak
+  * edge-service 애플리케이션 실행
+  * http://localhost:9000 이동 후 이전 단계에서 생성한 사용자 중 한 명으로 인증
+    * 이 단계에서는 화이트라벨이 나오면 정상
+  * 애플리케이션 중지
 
 
 
