@@ -15,6 +15,12 @@ management:
         include: refresh # /actuator/refresh 엔드포인트를 노출
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri:
+            http://localhost:8080/realms/PolarBookshop
   application:
     name: catalog-service # 설정 서버에서 설정을 필터링하는데 사용다는 애플리케이션 이름
   lifecycle:
