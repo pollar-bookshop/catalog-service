@@ -603,8 +603,17 @@
     * 앞 장에서 작성한 테스트는 OAuth2 토큰을 제공하지 않고, 공개 키를 제공해줄 키클록이 없기 때문에 실패한다.
       * CatalogServiceApplication 클래스에 설정 및 테스트 추가
 
-
-
+### ch12.3 스프링 보안과 OAuth2를 이용한 API 보호(반응형)
+#### ch12.3.1 스프링 부트 OAuth2 리소스 서버 보호
+  * order-service - build.gradle에 의존성 추가
+  * 스프링 보안과 키클록 간의 통합 설정 - application.yml에 코드 추가
+  * JWT 인증을 위한 보안 정책 정의
+    * orderservice.config.SecurityConfig 클래스 생성
+    * 설정이 작동하는지 확인
+      * docker-compose up -d polar-ui polar-keycloak polar-redis polar-rabbitmq polar-postgres
+      * edge-service, catalog-service, order-service 실행
+      * http://localhost:9000 이동 후 아무나로 로그인 -> 주문
+ 
 
 
 ### [참고] 에러 핸들링
