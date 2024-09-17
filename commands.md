@@ -555,7 +555,9 @@
     * polar-ui, redis, 키클록 컨테이너가 실행되고 있는지 확인
       * edge-service 실행
       * http://localhost:9000으로 이동 후 로그인, 로그아웃
-
+### ch11.6 스프링 보안 및 오픈ID 커넥트 테스트
+#### ch11.6.1 OIDC 인증 테스트
+  
 
 
 
