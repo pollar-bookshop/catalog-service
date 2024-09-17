@@ -558,7 +558,22 @@
 
 ## ch12 보안: 권한과 감사
 ### ch12.1 스프링 클라우드 게이트웨이와 OAuth2를 통한 권한과 역할
-#### ch12.1.1 스프링 클라우드 게이트웨이에서 다른 서비스로의 토큰 전달
+#### ch12.1.2 토큰 사용자 지정 및 사용자 역할 전파
+  * 키클록 관리자 콘솔에 접속한 뒤 roles 권한 설정
+    * http://localhost:8080 접속
+    * 관리자로 로그인 후 좌측 패널의 Client scopes 탭 클릭
+    * roles 검색 후 클릭
+    * Mappers 탭에서 Add mapper -> By configuration 클릭
+      * User Realm Role 클릭
+        * Name: realm roles
+        * Token Claim Name: roles
+        * Add to token 체크
+        * Add to access token 체크
+    * 실행 중인 컨테이너 중지
+      * docker compose down
+    * 클라이언트 등록 설정에서 roles 범위를 포함하도록 업데이트
+      * edge-service - application.yml파일에 코드 추가
+    * UserController, UserControllerTest가 클래임을 포함하도록 리팩토링 후 테스트 정상 수행되는지 확인
 
   
 
