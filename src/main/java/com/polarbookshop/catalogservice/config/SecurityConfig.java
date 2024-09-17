@@ -19,7 +19,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/", "/books/**").permitAll()
-                        .anyRequest().authenticated() // 이 외의 다른 요청은 인증이 필요하다.
+                        .anyRequest().hasRole("employee") // 이 외의 다른 요청은 인증이 필요하다.
                 )
                 // JWT에 기반한 기본 설정을 사용해 OAuth2 리소스 서버 지원을 활성화
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
@@ -29,13 +29,11 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
-
     @Bean
     public JwtAuthenticationConverter jwtAuthenticationConverter() {
         var jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         jwtGrantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
         jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
-
         var jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return jwtAuthenticationConverter;

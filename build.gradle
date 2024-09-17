@@ -11,6 +11,7 @@ ext {
 //	set('springCloudVersion', "2023.0.3") // 사용할 스프링 클라우드 버전 정의
 	set('springCloudVersion', "2022.0.4")
 	set('testcontainersVersion', "1.19.8") // 사용할 테스트컨테이너 버전을 지정
+	set('testKeycloakVersion', "2.3.0")
 }
 
 // 프로젝트를 빌드할 때 그래들이 설정 프로세서를 사용하도록 설정
@@ -63,6 +64,9 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 
+	testImplementation 'org.springframework.security:spring-security-test'
+	testImplementation 'org.testcontainers:junit-jupiter'
+	testImplementation "com.github.dasniko:testcontainers-keycloak:${testKeycloakVersion}" // 테스트 컨테이너에 기반한 키클록 테스트 유틸리티 제공
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }

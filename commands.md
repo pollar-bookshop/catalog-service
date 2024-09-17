@@ -585,6 +585,24 @@
       * docker-compose up -d polar-ui polar-keycloak polar-redis polar-postgres
     * edge-service, catalog-service 실행 후 http://localhost:9000 이동
     * 지금은 catalog-service가 사용자의 역할을 고려하지 않고 있음.
+#### ch12.2.2 스프링 보안 및 JWT를 통한 역할 기반 접근 제어
+  * 액세스 토큰에서 사용자 역할 추출
+    * catalog-service - SecurityConfig - JwtAuthenticationConverter 빈 새로 정의
+  * 사용자 역할에 따른 권한 부여 정책 정의
+    * 목표
+      * /, /books, /books/{isbn} 엔드포인트의 GET 요청은 인증이 없어도 허용돼야 한다.
+      * 그 외 모든 요청은 인증이 필요하고 인증된 사용자는 employee 역할을 가지고 있어야 한다.
+    * SecurityConfig - filterChain() 메서드 리팩토링
+#### ch12.2.3 스프링 보안 및 테스트 컨테이너를 이용한 OAuth 테스트
+  * 목표
+    * 모의 액세스 토큰을 사용해 웹 슬라이스에 대한 슬라이스 테스트 작성
+    * 실제 키클록 컨테이너를 사용하는 통합 테스트
+  * catalog-service build.gradle에 의존성 추가
+  * 테스트 작성 - BookControllerMvcTests 클래스 변경
+  * @SpringBootTest, 스프링 보안 및 테스트컨테이너를 이용한 통합 테스트
+    * 앞 장에서 작성한 테스트는 OAuth2 토큰을 제공하지 않고, 공개 키를 제공해줄 키클록이 없기 때문에 실패한다.
+      * CatalogServiceApplication 클래스에 설정 및 테스트 추가
+
 
 
 
