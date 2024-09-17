@@ -574,9 +574,17 @@
     * 클라이언트 등록 설정에서 roles 범위를 포함하도록 업데이트
       * edge-service - application.yml파일에 코드 추가
     * UserController, UserControllerTest가 클래임을 포함하도록 리팩토링 후 테스트 정상 수행되는지 확인
-
-  
-
+### ch12.2 스프링 보안 및 OAuth2를 통한 API 보호(명령형)
+#### ch12.2.1 스프링 부트 OAuth2 리소스 서버 보호
+  * catalog-service에 OAuth2 리소스 서버 지원을 포함하는 스프링 부트 스타터 의존성 추가
+  * catalog-service와 키클록 연결 (공개 키를 가져올 수 있도록)
+    * catalog-service - application.yml 파일에 코드 추가
+  * JWT 인증에 대한 보안 정책 정의
+    * catelogservice.config.SecurityConfig 클래스 추가
+    * 필요한 컨테이너 실행
+      * docker-compose up -d polar-ui polar-keycloak polar-redis polar-postgres
+    * edge-service, catalog-service 실행 후 http://localhost:9000 이동
+    * 지금은 catalog-service가 사용자의 역할을 고려하지 않고 있음.
 
 
 
