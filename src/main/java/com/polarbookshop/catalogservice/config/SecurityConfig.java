@@ -20,7 +20,6 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/", "/books/**").permitAll()
                         .anyRequest().hasRole("employee") // 이 외의 다른 요청은 인증이 필요하다.
