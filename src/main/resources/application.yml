@@ -8,16 +8,6 @@ server:
       max: 50
       min-spare: 5
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: always
-      show-components: always
-
 spring:
   security:
     oauth2:
@@ -50,6 +40,18 @@ spring:
     hikari:
         connection-timeout: 2000
         maximum-pool-size: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
 
 polar:
   greeting: Welcome to the local book catalog!
