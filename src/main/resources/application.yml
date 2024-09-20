@@ -51,7 +51,7 @@ management:
       show-details: always
       show-components: always
       probes:
-        enabled: true가
+        enabled: true
   metrics:
     tags:
       application: ${spring.application.name} # 모든 메트릭에 적용되는 프로메테우스 레이블이 만들어짐
