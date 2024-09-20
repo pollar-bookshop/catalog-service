@@ -647,9 +647,25 @@
     * catalog-service 실행
     * 카탈로그 서비스의 전반적인 상태 확인 (상태가 UP인 경우 200 반환, 그렇지 않으면 503 반환)
       * http :9001/actuator/health
-
-
-
+#### ch13.2.2 스프링 부트 및 쿠버네티스에서 상태 프로브 설정
+  * catalog-service - application.yml 파일 코드 추가
+  * 쿠버네티스에서 활성 및 준비 상태 프로브 설정
+    * k8s/deployment.yml에 코드 추가
+### ch13.3 스프링 부트 액추에이터, 프로메테우스, 그라파나를 통한 메트릭 및 모니터링
+#### ch13.3.1 스프링 부트 액추에이터 및 마이크로미터로 메트릭 설정
+  * 메트릭 http 엔트포인트 활성화
+    * application.yml 에서 메트릭 엔드포인트 노출하도록 코드 추가
+    * metrics 엔드포인트 노출 확인
+      * docker-compose up -d polar-keycloak polar-postgres
+      * catalog-service 실행
+      * http://localhost:9001/actuator/metrics 확인
+    * 프로메테우스 추가 및 엔드포인트 노출
+      * 프로메테우스 의존성 추가 
+      * application.yml에서 프로메테우스 엔드포인트 노출
+      * 어플리케이션 실행
+      * http://localhost:9001/actuator/prometheus 에서 결과 확인
+    * 에지 서비스의 클라우드 게이트웨이에 경로에 관한 추가 메트릭 내보내기
+      * edge-service - build.gradle에 마이크로미터 Resilience4J 의존성 추가
 
 
 ### [참고] 에러 핸들링
