@@ -12,6 +12,7 @@ ext {
 	set('springCloudVersion', "2022.0.4")
 	set('testcontainersVersion', "1.19.8") // 사용할 테스트컨테이너 버전을 지정
 	set('testKeycloakVersion', "2.3.0")
+	set('otelVersion', "1.17.0")
 }
 
 // 프로젝트를 빌드할 때 그래들이 설정 프로세서를 사용하도록 설정
@@ -66,6 +67,7 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation "com.github.dasniko:testcontainers-keycloak:${testKeycloakVersion}" // 테스트 컨테이너에 기반한 키클록 테스트 유틸리티 제공
 	runtimeOnly 'org.postgresql:postgresql'
+	runtimeOnly "io.opentelemetry.javaagent:opentelemetry-javaagent:${otelVersion}"
 	// 마이크로미터 프로메테우스 의존성 추가
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
