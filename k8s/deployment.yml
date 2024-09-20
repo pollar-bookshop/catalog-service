@@ -13,6 +13,10 @@ spec:
     metadata:
       labels: # 파드 객체에 추가되는 레이블. 레이블은 셀렉터로 사용하는 것과 일치해야 한다.
         app: catalog-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "9001"
     spec:
       containers: # 파드 내 컨테이너의 목록(이 경우 하나)
         - name: catalog-service # 파드 이름

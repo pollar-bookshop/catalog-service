@@ -680,7 +680,10 @@
       * http://localhost:3000 이동
       * Explore 섹션에서
       * jvm_memory_used_bytes{application="catalog-service"}
-
+    * docker compose down
+#### ch13.3.3 쿠버네티스에서 프로메테우스 메트릭 설정
+  * catalog-service에서 프로메테우스 메트릭을 가져오기 위한 주석
+    * catalog-servie/k8s/deployment.yml 파일 업데이트
 
 
 ### [참고] 에러 핸들링
