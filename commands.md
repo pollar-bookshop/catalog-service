@@ -666,6 +666,21 @@
       * http://localhost:9001/actuator/prometheus 에서 결과 확인
     * 에지 서비스의 클라우드 게이트웨이에 경로에 관한 추가 메트릭 내보내기
       * edge-service - build.gradle에 마이크로미터 Resilience4J 의존성 추가
+#### ch13.3.2 프로메테우스와 그라파나를 통한 메트릭 모니터링
+  * 애플리케이션의 이름으로 모든 메트릭에 적용되는 마이크로미터 태그 생성
+    * application.yml에 코드 추가
+    * polar-deployment에 프로메테우스를 포함하도록 docker-compose.yml 파일 업데이트 및 prometheus, grafana 메니페스트 정의
+    * docker-compose up -d grafana
+    * catalog-service 도커로 실행
+      * ./gradlew bootBuildImage
+      * docker-compose up -d catalog-service
+    * catalog-service에 요청 보내기
+      * http :9001/books
+    * JVM 메모리에 관한 메트릭 질의
+      * http://localhost:3000 이동
+      * Explore 섹션에서
+      * jvm_memory_used_bytes{application="catalog-service"}
+
 
 
 ### [참고] 에러 핸들링
