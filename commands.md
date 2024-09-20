@@ -684,6 +684,31 @@
 #### ch13.3.3 쿠버네티스에서 프로메테우스 메트릭 설정
   * catalog-service에서 프로메테우스 메트릭을 가져오기 위한 주석
     * catalog-servie/k8s/deployment.yml 파일 업데이트
+### ch13.4 오픈텔레메트리 및 템포를 사용한 분산 추적
+#### ch13.4.1 템포와 그라파나를 통한 트레이스 관리
+  * 폴라 북숍이 템포를 포함하도록 도커 컴포즈 파일 업데이트 및 템포 매니페스트 작성
+  * docker-compose up -d grafana
+#### ch13.4.2 오픈텔레메트리를 사용해 스프링 부트에서 추적 구성하기
+  * 오픈텔레메트리 자바 에이전트 의존성 추가
+    * build.gradle에 의존성 추가
+  * 트레이스 및 스팬 식별자 로그 형식 정의
+    * application.yml 파일 업데이트
+  * catalog-service 이미지로 패키징
+  * docker-compose 파일 업데이트
+  * docker-compose up -d catalog-service
+  * 로그 및 트레이스 생성을 위해 요청 보내기
+    * http :9001/books
+  * 컨테이너에서 로그 확인
+    * docker logs catalog-service
+  * 에지 서비스 이미지 패키징 및 컨테이너 실행
+    * ./gradlew bootBuildImage
+    * docker compose up -d edge-service
+    * http :9000/books
+  * 그라파나에서 로그 확인
+    * http://localhost:3000 -> 로그인
+    * {container_name="/catalog_service"} 로그 확인
+    * 가장 최근 로그 메시지의 템포 버튼 클릭해 트레이스 확인
+  * docker-compose down
 
 
 ### [참고] 에러 핸들링
