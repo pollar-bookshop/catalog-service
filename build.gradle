@@ -66,6 +66,8 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 	testImplementation "com.github.dasniko:testcontainers-keycloak:${testKeycloakVersion}" // 테스트 컨테이너에 기반한 키클록 테스트 유틸리티 제공
 	runtimeOnly 'org.postgresql:postgresql'
+	// 마이크로미터 프로메테우스 의존성 추가
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
 
