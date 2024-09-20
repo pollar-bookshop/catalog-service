@@ -613,7 +613,16 @@
       * docker-compose up -d polar-ui polar-keycloak polar-redis polar-rabbitmq polar-postgres
       * edge-service, catalog-service, order-service 실행
       * http://localhost:9000 이동 후 아무나로 로그인 -> 주문
- 
+
+# 3부 프로덕션에서의 클라우드 네이티브
+## ch13 관측 가능성 및 모니터링
+### ch13.1 스프링 부트, 로키 및 플루언트 비트를 사용한 로깅
+#### ch13.1.1 스프링 부트를 사용한 로깅
+  * 스프링 부트 로깅 설정
+    * edge-serviec - application.yml 코드 추가
+  * 스프링 부트 애플리케이션에 로그 추가
+    * 
+
 
 
 ### [참고] 에러 핸들링
