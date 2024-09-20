@@ -621,7 +621,34 @@
   * 스프링 부트 로깅 설정
     * edge-serviec - application.yml 코드 추가
   * 스프링 부트 애플리케이션에 로그 추가
-    * 
+#### ch13.1.2 로키, 플루언트 비트, 그라파나로 로그 관리하기
+  * 그라파나, 로키, 플루언트 비트를 컨테이너로 실행
+    * polar-deploym거ent - docker-compose.yml에 코드 추
+    * docker-compose up -d grafana
+  * catalog-service 애플리케이션에서 플루언트디 드라이버를 사용해 컨테이너 로그를 플루언트 비트로 전달
+    * polar-deployment - docker-compose 파일에 코드 추가
+    * docker compose up -d catalog-service
+    * 몇 가지 요청을 전송해 로그 메시지 생성
+      * http :9001/books
+    * 그라파나에서 로그 검색
+      * http://localhost:3000 이동
+      * 도커 컴포즈에서 설정한 크리덴셜로 로그인
+      * 왼쪽 Explorer 페이지에서 데이터 소스 로키 선택
+      * 카탈로그 서비스의 모든 로그 검색
+        * {comtaner_name="/catalog-service"}
+      * docker-compose down
+### ch13.2 스프링 부트 액추에이터와 쿠버네티스를 사용한 상태 프로브
+#### ch13.2.1 액추에이터를 통한 스트링 부트 애플리케이션 상태 프로프 정의
+  * catalog-service - build.gradle에 스프링부트 액추에이터 의존성 추가
+  * 스프링 부트 액추에이터 엔드포인트에 대해서는 인증되지 않은 엑세스라도 허용하도록 스프링 보안 설정 변경
+    * catalog-service - SecurityConfig 클래스에 코드 추가
+    * catalog-service - application.yml 코드 수정
+    * docker-compose up -d config-service polar-postgres polar-keycloak
+    * catalog-service 실행
+    * 카탈로그 서비스의 전반적인 상태 확인 (상태가 UP인 경우 200 반환, 그렇지 않으면 503 반환)
+      * http :9001/actuator/health
+
+
 
 
 

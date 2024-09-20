@@ -12,7 +12,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh # /actuator/refresh 엔드포인트를 노출
+        include: health
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
 
 spring:
   security:
