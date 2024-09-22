@@ -20,9 +20,11 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s # 우아한 종료 시 15초의 종료 기간을 둠
   config:
-    import: "optional:configserver:" # 가능하면 configserver에서 설정 데이터를 가져온다
+#    import: "optional:configserver:" # 가능하면 configserver에서 설정 데이터를 가져온다
+    import: "" # 가능하면 configserver에서 설정 데이터를 가져온다
   cloud:
     config:
+      enabled: false # 스프링 클라우드 컨피그 비활성화
       uri: http://localhost:8888 # 설정 서버의 URL
       request-connect-timeout: 5000 # 설정 서버에 연결될 때까지 기다리는 시간 (밀리초)
       request-read-timeout: 5000 # 설정 서버에서 설정 데이터를 읽을 때까지 기다리는 시간(밀리초)

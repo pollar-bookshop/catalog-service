@@ -710,6 +710,16 @@
     * 가장 최근 로그 메시지의 템포 버튼 클릭해 트레이스 확인
   * docker-compose down
 
+## ch14 설정과 시크릿 관리
+### ch14.1 쿠버네티스에서 애플리케이션 설정하기
+#### ch14.1.4 스프링 클라우드 컨피그 비활성화
+  * catalog-service에서 스프링 클라우드 컨피그 비활성화
+    * application.yml 업데이트
+
+
+
+
+
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
