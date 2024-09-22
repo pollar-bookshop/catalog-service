@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources: # 커스터마이즈가 관리하고 처리할 쿠버네티스 매니페스트
+  - deployment.yml
+  - service.yml
+
+configMapGenerator:
+  - name: catalog-config
+    files:
+      - application.yml
+    options:
+      labels:
+        app: catalog-service

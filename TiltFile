@@ -9,7 +9,7 @@ custom_build(
 )
 
 # 배포
-k8s_yaml(['k8s/deployment.yml', 'k8s/service.yml'])
+k8s_yaml(kustomize('k8s') # k8s 폴더 내에 있는 Kustomization 리소스로 애플리케이션 실행
 
 # 관리
 k8s_resource('catalog-service', port_forwards=['9001'])

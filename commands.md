@@ -759,8 +759,30 @@
       --from-literal=test.password=password
     * kubectl get secret test-credentials
     * kubectl get secret test-credentials -o yaml
-
-
+### ch14.3 커스터마이즈를 통한 설정 관리
+  * polar-deployment/kubernetes/platform/development 에서 아래 커맨드 실행
+    * ./create-cluster.sh
+#### ch14.3.1 커스터마이즈를 통한 스프링 부트 애플리케이션 관리 및 설정
+  * 커스터마이즈의 시작점 생성
+    * 커스터마이즈를 위한 기본 쿠버네티스 매니페스트 정의
+    * catalog-service/k8s/kustomization.yml 파일 생성
+  * kustomization.yml 파일이 컨피그맵을 설정하도록 변경
+    * k8s/application.yml 파일 생성
+    * configmap.yml의 내용을 k8s/application.yml 파일에 옮긴 후 configmap.yml 삭제
+    * kustomization.yml이 application.yml 파일로부터 컨피그맵을 생성하도록 설정
+    * catalog-service에서 아래 커맨드 실행
+      * kubectl apply -k k8s
+    * catalog-service 애플리케이션을 로컬 머신에 노출
+      * kubectl port-forward service/catalog-service 9001:80
+    * http :9001/
+    * catalog-config 컨피그 맵에 할당된 실제 이름 확인
+      * kubectl get cm -l app=catalog-service
+  * 종료
+    * 포트포워딩 종료
+    * catalog-service 종료
+      * kubectl delete -k k8s
+  * 틸트 파일이 Kustomization 리소스를 통해 애플리케이션을 배포하도록 설정
+      * catalog-service Tiltfile 업데이트
 
 
 ### [참고] 에러 핸들링
