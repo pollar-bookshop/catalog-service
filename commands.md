@@ -795,7 +795,11 @@
   * 프로파일에 따른 정의
     * polar-deployment/kubernetes/applications/catalog-service/staging/application-staging.yml 파일 생성 및 업데이트
     * kustomization 파일 업데이트
-
+#### ch14.3.6 이미지 이름 및 버전의 사용자 지정 변경
+  * 컨테이너에 사용할 이미지 이름과 버전 선언 (CLI로)
+    * polar-deployment/kubernetes/applications/catalog-service/staging에서 아래 커맨드 실행
+      * kustomize edit set image \
+        catalog-service=ghcr.io/pollar-bookshop/catalog-service:latest
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
