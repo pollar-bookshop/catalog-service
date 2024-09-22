@@ -751,7 +751,14 @@
           * 포트포워드 프로세스 중지 및 쿠버네티스 객체 삭제
             * catalog-service에서 아래 커맨드 실행
               * kubectl delete -f k8s
-
+#### ch14.2.2 시크릿으로 민감한 정보를 저장하거나 저장하지 않기
+  * 가상의 크리덴셜(user/password)에 대해 test-credentials 라는 시크릿 객체 생성
+    * kubectl create secret generic \
+      test-credentials \
+      --from-literal=test.username=user \
+      --from-literal=test.password=password
+    * kubectl get secret test-credentials
+    * kubectl get secret test-credentials -o yaml
 
 
 
