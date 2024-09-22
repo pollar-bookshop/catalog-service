@@ -800,6 +800,21 @@
     * polar-deployment/kubernetes/applications/catalog-service/staging에서 아래 커맨드 실행
       * kustomize edit set image \
         catalog-service=ghcr.io/pollar-bookshop/catalog-service:latest
+#### ch14.3.7 복제본 수 사용자 지정 변경
+  * polar-deployment/kubernetes/applications/catalog-service/staging/kustomization.yml 파일 업데이트
+  * polar-deployment/kubernetes/applications/catalog-service/staging
+    * kubectl apply -k .
+  * 로그 확인 (프로파일 활성화)
+    * kubectl logs deployment/catalog-service
+  * 포트포워딩 및 루트 엔드포인트 호출해 메시지 확인
+    * kubectl port-forward service/catalog-service 9001:80
+    * http :9001
+  * 마무리
+    * 포트포워딩 종료
+    * polar-deployment/kubernetes/platform/development
+      * ./destroy-cluster.sh
+
+
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행

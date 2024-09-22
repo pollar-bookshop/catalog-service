@@ -41,13 +41,13 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 9001
-            initialDelaySeconds: 150
+            initialDelaySeconds: 200
             periodSeconds: 15
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 9001
-            initialDelaySeconds: 150
+            initialDelaySeconds: 200
             periodSeconds: 60
           volumeMounts: # 컨피그맵을 컨테이너에서 볼륨으로 마운트한다.
             - name: catalog-config-volume
