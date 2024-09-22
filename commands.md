@@ -786,6 +786,11 @@
 #### ch14.3.3 스테이징을 위한 설정 오버레이 정의
   * polar-deployment/kubernetes/applications 폴더 생성
   * kutomization.yml 파일 생성 후 업데이트
+#### ch14.3.4 환경 변수 사용자 지정 변경
+  * 환경 변수를 사용자 지정 변경
+    * polar-deployment/kubernetes/applications/catalog-service/staging/patch-env.yml 파일 생성
+    * 커스터마이즈에 패치를 적용하도록 지시
+    * polar-deployment/kubernetes/applications/catalog-service/staging/kustomization.yml 파일 업데이트
 
 
 
