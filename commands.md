@@ -715,7 +715,42 @@
 #### ch14.1.4 스프링 클라우드 컨피그 비활성화
   * catalog-service에서 스프링 클라우드 컨피그 비활성화
     * application.yml 업데이트
-
+### ch14.2 쿠버네티스에서 컨피그맵과 시크릿 사용
+  * 로컬 쿠버네티스 클러스터 시작
+    * polar-deployment/kubernetes/platform/development 이동
+    * ./create-cluster.sh
+    * 모든 지원 서비스가 사용 가능한 상태에 있는지 확인
+      * kubectl get deploy
+#### ch14.2.1 컨피그맵을 통한 스프링 부트 설정
+  * catalog-service/k8s/configmap.yml 파일 생성 후 application.yml의 설정 일부 변경
+    * 사용자 지정 인사말을 설정한다
+    * PostgreSQL의 데이터 소스의 URL을 설정한다
+    * 키클록에 대한 URL을 설정한다.
+    * catalog-service에서 아래 커맨드 실행
+      * kubectl apply -f k8s/configmap.yml
+      * 컨피그맵이 올바르게 생성되었는지 확인
+        * kubectl get cm -l app=catalog-service
+    * 컨피그맵을 catalog-service 컨테이너에 마운트
+      * catalog-service/k8s/deployment 업데이트
+        * 컨피그맵에서 선언한 값에 대한 환경 변수를 제거한다
+        * catalog-config 컨피스맵에서 생성된 볼륨을 선언한다.
+        * catalog-service 컨테이너에 대한 볼륨 마운트 지정
+      * 배포 및 서비스 매니페스트에 대해서도 동일한 작업을 수행
+        * 애플리케이션을 컨테이너 이미지로 패키징하고 클러스터에 올린다.
+          * catalog-service에서 아래 커맨드 실행
+            * ./gradlew bootBuildImage
+            * minikube image load catalog-service --profile polar
+            * kubectl apply -f k8s/deployment.yml -f k8s/service.yml
+            * kubectl get deploy -l app=catalog-service
+          * 로컬 머신에서 쿠버네티스 클러스터로 트래픽을 전달하도록 포트포워딩
+            * kubectl port-forward service/catalog-service 9001:80
+          * polar.greeting 값이 컨피그맵에 지정된 값으로 사용되는지 확인
+            * http :9001/
+          * 컨피그맵에 지정된 PostgreSQL URL이 올바르게 사용되는지 확인
+            * http :9001/books
+          * 포트포워드 프로세스 중지 및 쿠버네티스 객체 삭제
+            * catalog-service에서 아래 커맨드 실행
+              * kubectl delete -f k8s
 
 
 

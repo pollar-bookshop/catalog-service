@@ -41,11 +41,18 @@ spec:
             httpGet:
               path: /actuator/health/liveness
               port: 9001
-            initialDelaySeconds: 10
-            periodSeconds: 5
+            initialDelaySeconds: 150
+            periodSeconds: 15
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
               port: 9001
-            initialDelaySeconds: 5
-            periodSeconds: 15
+            initialDelaySeconds: 150
+            periodSeconds: 60
+          volumeMounts: # 컨피그맵을 컨테이너에서 볼륨으로 마운트한다.
+            - name: catalog-config-volume
+              mountPath: /workspace/config # 스프링 부트가 자동으로 이 폴더에서 속성 파일을 찾고 로드한다.
+      volumes: # 파드를 위해 볼륨을 정의한다.
+        - name: catalog-config-volume # 볼륨 이름
+          configMap: # 볼륨을 생성할 컨피그맵
+            name: catalog-config
