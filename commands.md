@@ -791,7 +791,10 @@
     * polar-deployment/kubernetes/applications/catalog-service/staging/patch-env.yml 파일 생성
     * 커스터마이즈에 패치를 적용하도록 지시
     * polar-deployment/kubernetes/applications/catalog-service/staging/kustomization.yml 파일 업데이트
-
+#### ch14.3.5 컨피그맵 사용자 정의 변경
+  * 프로파일에 따른 정의
+    * polar-deployment/kubernetes/applications/catalog-service/staging/application-staging.yml 파일 생성 및 업데이트
+    * kustomization 파일 업데이트
 
 
 ### [참고] 에러 핸들링
