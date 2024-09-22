@@ -783,6 +783,10 @@
       * kubectl delete -k k8s
   * 틸트 파일이 Kustomization 리소스를 통해 애플리케이션을 배포하도록 설정
       * catalog-service Tiltfile 업데이트
+#### ch14.3.3 스테이징을 위한 설정 오버레이 정의
+  * polar-deployment/kubernetes/applications 폴더 생성
+  * kutomization.yml 파일 생성 후 업데이트
+
 
 
 ### [참고] 에러 핸들링
