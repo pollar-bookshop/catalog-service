@@ -872,8 +872,25 @@
             --from-literal="spring.r2dbc.url=r2dbc:postgresql://<postgres_host>:<postgres_port>/polardb_order?ssl=true&sslMode=require" \
             --from-literal=spring.datasource.username=<postgres_username> \
             --from-literal=spring.datasource.password=<postgres_password>
-  
-
+    * B3 디지털 오션에서 레디스 실행
+      * polar-redis 이름의 새 레디스 서버 생성
+        * doctl databases create polar-redis \
+          --engine redis \
+          --region <your_region> \
+          --version 7
+      * 설치 상태 확인 redis_id: e1bc1c52-731b-4f4c-be85-ca77b1ca88cd
+        * doctl databases list
+      * 쿠버네티스 클러스터에서만 접근할 수 있도록 방화벽 생성
+        * doctl databases firewalls append <redis_id> --rule k8s:<cluster_id>
+      * 레디스 연결을 위한 세부 정보 검색
+        * doctl databases connection <redis_id> --format Host,Port,User,Password
+      * 레디스 크리덴셜을 사용해 쿠버네티스 클러스터에 시크릿 생성
+        * kubectl create secret generic polar-redis-credentials \
+          --from-literal=spring.redis.host=<redis_host> \
+          --from-literal=spring.redis.port=<redis_port> \
+          --from-literal=spring.redis.username=<redis_username> \
+          --from-literal=spring.redis.password=<redis_password> \
+          --from-literal=spring.redis.ssl=true
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
