@@ -897,7 +897,18 @@
         * ./deploy.sh
       * 확인
         * kubectl get secrets polar-rabbitmq-credentials
-
+    * B5 헬름 차트를 사용한 키클록 실행
+      * 홈브루로 헬름 설치
+        * brew install helm
+      * polar-deployment/kubernetes/platform/production/keycloak 에서 아래 명령어 실행
+        * ./deploy.sh
+      * 시크릿이 성공적으로 생성됐는지 확인
+        * kubectl get secrets polar-keycloak-client-credentials
+      * keycloak 서버 외부IP주소 확인
+        * kubectl get service polar-keycloak -n keycloak-system
+      * 에지/카탈로그/주문 서비스에서 키클록 통합 설정
+        * polar-deployment/kubernetes/platform/production/keycloak 에서 아래 명령 실행
+          * ./create-secrets.sh http:/ /139.59.192.205/realms/PolarBookshop
 
 
 ### [참고] 에러 핸들링
