@@ -827,23 +827,52 @@
   * 미니큐브 -> 디지털오션 공용 클라우드에서 쿠버네티스 클러스터 초기화
   * 부록B.1-B.6절 참고
     * B1 디지털 오션에서 쿠버네티스 클러스터 실행
-    * doctl k8s cluster create polar-cluster \
-      --node-pool "name=basicnp;size=s-2vcpu-4gb;count=3;label=type=basic;" \
-      --region sgp1
-    * 클러스터 아이디 조회 및 현재 컨텍스트 확인
-      * 클러스러 아이디: 6c0dbfa8-fc43-4a7d-a8d7-8058d2c55f61
-      * doctl k8s cluster list
-      * kubectl config current-context
-    * 워커 노드에 대한 정보 확인
-      * kubectl get nodes
-    * 클러스터의 워크로드 시각화
-      * octant
-    * 인그레스 컨트롤러 설치
-      * polar-deployment/kubernetes/platform/production폴더 및 하위 파일 생성
-      * polar-deployment/kubernetes/platform/production/ingress-nginx에서 아래 명령 실행
-        * ./deploy.sh
-
-
+      * doctl k8s cluster create polar-cluster \
+        --node-pool "name=basicnp;size=s-2vcpu-4gb;count=3;label=type=basic;" \
+        --region sgp1
+      * 클러스터 아이디 조회 및 현재 컨텍스트 확인
+        * 클러스터 아이디: 6c0dbfa8-fc43-4a7d-a8d7-8058d2c55f61
+        * doctl k8s cluster list
+        * kubectl config current-context
+      * 워커 노드에 대한 정보 확인
+        * kubectl get nodes
+      * 클러스터의 워크로드 시각화
+        * octant
+      * 인그레스 컨트롤러 설치
+        * polar-deployment/kubernetes/platform/production폴더 및 하위 파일 생성
+        * polar-deployment/kubernetes/platform/production/ingress-nginx에서 아래 명령 실행
+          * ./deploy.sh
+    * B2 디지털오션에서 PostgreSQL 데이터베이스 실행
+      * polar-postgres 이름의 새 PostgreSQL 서버 생성
+        * doctl databases create polar-db \
+          --engine pg \
+          --region sgp1 \
+          --version 14
+      * 설치 상태 확인
+        * doctl databases list
+      * 데이터베이스 서버 아이디
+        * 57609c18-7995-4f26-bd8f-f5ae875912d3
+      * 이전에 생성한 쿠보네티스 클러스터에서만 엑세스할 수 있도록 방화벽 설정
+        * doctl databases firewalls append <postgresI_id> --rule k8s:<cluster_id>
+      * catalog-service, order-service에서 사용할 데이터베이스 생성
+        * doctl databases db create <postgres_id> polardb_catalog
+        * doctl databases db create <postgres_id> polardb_order
+      * PosstgreSQL에 연결하기 위해 세부 정보 검색
+        * doctl databases connection <postgres_id> --format Host,Port,User,Password
+        * doctl databases connection 57609c18-7995-4f26-bd8f-f5ae875912d3 --format Host,Port,User,Password
+      * 두 애플리케이션에 필요한 시크릿 생성
+        * 카탈로그 서비스에 대한 시크릿 만들기
+          * kubectl create secret generic polar-postgres-catalog-credentials \
+            --from-literal=spring.datasource.url=jdbc:postgresql://<postgres_host>:<postgres_port>/polardb_catalog \
+            --from-literal=spring.datasource.username=<postgres_username> \
+            --from-literal=spring.datasource.password=<postgres_password>
+        * 주문 서비스에 대한 시크릿 만들기
+          * kubectl create secret generic polar-postgres-order-credentials \
+            --from-literal="spring.flyway.url=jdbc:postgresql://<postgres_host>:<postgres_port>/polardb_order" \
+            --from-literal="spring.r2dbc.url=r2dbc:postgresql://<postgres_host>:<postgres_port>/polardb_order?ssl=true&sslMode=require" \
+            --from-literal=spring.datasource.username=<postgres_username> \
+            --from-literal=spring.datasource.password=<postgres_password>
+  
 
 
 ### [참고] 에러 핸들링
