@@ -814,6 +814,12 @@
     * polar-deployment/kubernetes/platform/development
       * ./destroy-cluster.sh
 
+## ch15 지속적 전달과 깃옵스
+### ch15.1 배포 파이프라인: 수락 단계
+#### ch15.1.1 지속적 배포를 위한 릴리스 후보 버전 지정
+  * 릴리스 후보의 식별자를 깃허브 해시로 동적으로 바꾸기
+    * .github/workflows/commit-stage.yml 파일 업데이트
+    * 위의 워크플로르 업데이트한 후 변경 사항을 커밋하고 깃허브에 푸쉬
 
 
 ### [참고] 에러 핸들링
