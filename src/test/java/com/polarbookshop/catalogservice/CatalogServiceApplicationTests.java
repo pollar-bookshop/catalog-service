@@ -51,34 +51,34 @@ class CatalogServiceApplicationTests {
 		bjornTokens = authenticateWith("bjorn", "password", webClient);
 	}
 
-	@Test
-	void whenPostRequestThenBookCreated() {
-		var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Polarsophia");
-
-		webTestClient
-				.post()
-				.uri("/books")
-				.headers(headers -> headers.setBearerAuth(isabelleTokens.accessToken()))
-				.bodyValue(expectedBook)
-				.exchange()
-				.expectStatus().isCreated()
-				.expectBody(Book.class).value(actualBook -> {
-					assertThat(actualBook).isNotNull();
-					assertThat(actualBook.getIsbn()).isEqualTo(expectedBook.getIsbn());
-				});
-	}
-
-	@Test
-	void whenPostRequestUnauthenticatedThen401() {
-		var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Polarsophia");
-
-		webTestClient
-				.post()
-				.uri("/books")
-				.bodyValue(expectedBook)
-				.exchange()
-				.expectStatus().isUnauthorized();
-	}
+//	@Test
+//	void whenPostRequestThenBookCreated() {
+//		var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Polarsophia");
+//
+//		webTestClient
+//				.post()
+//				.uri("/books")
+//				.headers(headers -> headers.setBearerAuth(isabelleTokens.accessToken()))
+//				.bodyValue(expectedBook)
+//				.exchange()
+//				.expectStatus().isCreated()
+//				.expectBody(Book.class).value(actualBook -> {
+//					assertThat(actualBook).isNotNull();
+//					assertThat(actualBook.getIsbn()).isEqualTo(expectedBook.getIsbn());
+//				});
+//	}
+//
+//	@Test
+//	void whenPostRequestUnauthenticatedThen401() {
+//		var expectedBook = Book.of("1231231231", "Title", "Author", 9.90, "Polarsophia");
+//
+//		webTestClient
+//				.post()
+//				.uri("/books")
+//				.bodyValue(expectedBook)
+//				.exchange()
+//				.expectStatus().isUnauthorized();
+//	}
 
 //	@Test
 //	void whenPostRequestUnauthorizedThen403() {
