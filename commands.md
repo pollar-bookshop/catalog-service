@@ -912,7 +912,25 @@
     * B6 폴라 UI 실행
       * polar-deployment/kubernetes/platform/production/polar-ui 에서 아래 명령 실행
         * ./deploy.sh
-
+### ch15.2 프로덕션을 위한 스프링 부트 설정
+#### ch15.2.1 프로덕션을 위한 설정 오버레이 정의
+  * polar-deployment/kubernetes/applications/catalog-service/production/kustomization.yml 파일 생성
+  * 환경 변수 사용자 지정
+    * polar-deployment/kubernetes/applications/catalog-service/production/patch-env.yml 파일 생성
+    * kustomization.yml 파일 업데이트
+  * 시크릿 및 볼륨 사용자 지정
+    * polar-deployment/kubernetes/applications/catalog-service/production/patch-volume.yml 파일 생성
+    * kustomization.yml 파일 업데이트
+  * 컨피그맵 사용자 지정
+    * polar-deployment/kubernetes/applications/catalog-service/production/application-prod.yml 파일 생성
+    * kustomization.yml 파일 업데이트
+  * 이미지 이름 및 버전 사용자 지정
+    * polar-deployment/kubernetes/applications/catalog-service/production 에서 아래 명령어 실행
+      * kustomize edit set image \
+        catalog-service=ghcr.io/pollar-bookshop/catalog-service:<sha>
+  * 복제본 수 사용자 지정
+    * polar-deployment/kubernetes/applications/catalog-service/production/kustomization.yml 파일 업데이트
+    * 
 
 
 ### [참고] 에러 핸들링
