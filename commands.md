@@ -823,6 +823,25 @@
 #### ch15.1.3 깃허브 액션으로 수락 단계 구현
   * 수락 단계 워크플로 설계하기
     * .github/workflows/acceptance-stage.yml 파일 생성 및 코드 작성
+### ch15.2 프로덕션을 위한 스프링 부트 설정
+  * 미니큐브 -> 디지털오션 공용 클라우드에서 쿠버네티스 클러스터 초기화
+  * 부록B.1-B.6절 참고
+    * B1 디지털 오션에서 쿠버네티스 클러스터 실행
+    * doctl k8s cluster create polar-cluster \
+      --node-pool "name=basicnp;size=s-2vcpu-4gb;count=3;label=type=basic;" \
+      --region sgp1
+    * 클러스터 아이디 조회 및 현재 컨텍스트 확인
+      * 클러스러 아이디: 6c0dbfa8-fc43-4a7d-a8d7-8058d2c55f61
+      * doctl k8s cluster list
+      * kubectl config current-context
+    * 워커 노드에 대한 정보 확인
+      * kubectl get nodes
+    * 클러스터의 워크로드 시각화
+      * octant
+    * 인그레스 컨트롤러 설치
+      * polar-deployment/kubernetes/platform/production폴더 및 하위 파일 생성
+      * polar-deployment/kubernetes/platform/production/ingress-nginx에서 아래 명령 실행
+        * ./deploy.sh
 
 
 
