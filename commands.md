@@ -930,7 +930,13 @@
         catalog-service=ghcr.io/pollar-bookshop/catalog-service:<sha>
   * 복제본 수 사용자 지정
     * polar-deployment/kubernetes/applications/catalog-service/production/kustomization.yml 파일 업데이트
-    * 
+#### ch15.2.2 스프링 부트 컨테이너 CPU 및 메모리 설정
+  * 컨테이너의 리소스 요청 및 제한
+    * polar-deployment/kubernetes/applications/catalog-service/production/patch-resources.yml 파일 생성
+    * kustomization.yml 파일 업데이트
+  * JVM을 위한 리소스 설정
+    * polar-deployment/kubernetes/applications/catalog-service/production/patch-env.yml 파일 업데이트
+
 
 
 ### [참고] 에러 핸들링
