@@ -909,6 +909,10 @@
       * 에지/카탈로그/주문 서비스에서 키클록 통합 설정
         * polar-deployment/kubernetes/platform/production/keycloak 에서 아래 명령 실행
           * ./create-secrets.sh http:/ /139.59.192.205/realms/PolarBookshop
+    * B6 폴라 UI 실행
+      * polar-deployment/kubernetes/platform/production/polar-ui 에서 아래 명령 실행
+        * ./deploy.sh
+
 
 
 ### [참고] 에러 핸들링
