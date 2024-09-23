@@ -891,6 +891,14 @@
           --from-literal=spring.redis.username=<redis_username> \
           --from-literal=spring.redis.password=<redis_password> \
           --from-literal=spring.redis.ssl=true
+    * B4 쿠버네티스 오퍼레이터를 통한 래빗MQ 실행
+      * polar-deployment/kubernetes/platform/production/rabbitmq 폴더에서 아래 커맨드 실행
+        * 래빗MQ 배포 및 주문/배송 서비스가 래빗MQ에 엑세스하는데 필요한 크리덴셜을 사용해 시크릿 생성
+        * ./deploy.sh
+      * 확인
+        * kubectl get secrets polar-rabbitmq-credentials
+
+
 
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
