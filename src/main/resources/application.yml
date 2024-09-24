@@ -55,13 +55,13 @@ management:
     web:
       exposure:
 #        include: configprops, env, flyway, health, heapdump, info, loggers, mappings, prometheus
-        include: health, prometheus
+        include: health, prometheus, env
   endpoint:
     health:
       show-details: always
       show-components: always
       probes:
-        enabled: true
+        enabled: trueㅈ
 #  info:
 #    env:
 #      enabled: true
