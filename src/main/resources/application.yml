@@ -61,7 +61,7 @@ management:
       show-details: always
       show-components: always
       probes:
-        enabled: trueㅈ
+        enabled: true
 #  info:
 #    env:
 #      enabled: true
