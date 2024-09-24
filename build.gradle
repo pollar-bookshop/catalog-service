@@ -54,7 +54,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.projectlombok:lombok:1.18.22'
 	// 플라이웨이 의존성 추가 시작
-//	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-core'
 	// 플라이웨이 의존성 추가 끝
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
