@@ -55,7 +55,7 @@ management:
     web:
       exposure:
 #        include: configprops, env, flyway, health, heapdump, info, loggers, mappings, prometheus
-        include: health, prometheus, env
+        include: health, prometheus
   endpoint:
     health:
       show-details: always
