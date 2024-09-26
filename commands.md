@@ -959,6 +959,7 @@
 
 
 
+
 ### [참고] 에러 핸들링
   * ./gradlew bootBuildImage 실행 시 Connection to the Docker daemon at ‘localhost’ failed with error "[2] No such file or directory" 에러 발생 시 아래 코드 실행
     * sudo ln -s "$HOME/.docker/run/docker.sock" /var/run/docker.sock
