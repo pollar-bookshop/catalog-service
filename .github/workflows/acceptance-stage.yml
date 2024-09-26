@@ -47,7 +47,7 @@ jobs:
         token: ${{ secrets.DISPATCH_TOKEN }}
         repository:
           # 알릴 저장소
-          ${{ env.ORDER }}/${{ env.DEPLOY_REPO }}
+          ${{ env.OWNER }}/${{ env.DEPLOY_REPO }}
         event-type: app_delivery
         client-payload: '{
           "app_image":
