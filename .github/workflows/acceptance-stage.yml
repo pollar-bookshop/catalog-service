@@ -6,6 +6,13 @@ on:
     branches: main
 concurrency: acceptance # 한 번에 하나의 워크플로만 실행시킨다.
 
+env:
+  OWNER: pollar-bookshop
+  REGISTRY: ghcr.io
+  APP_REPO: catalog-service
+  DEPLOY_REPO: polar-deployment
+  VERSION: ${{ github.sha }}
+
 # 이 작업은 커밋 단계가 성공한 이후 실행된다.
 jobs:
   functional:
@@ -27,3 +34,24 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run: echo "Running security tests"
+  deliver:
+    name: Deliver release candidate to production
+    needs: [ functional, performance, security ]
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Deliver application to production
+      # 다른 저장소에서 워크플로를 시작하도록 이벤트를 보내는 액션
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        # 다른 저장소로 이벤트를 보낼 수 있도록 액션 권한을 위한 토큰
+        token: ${{ secrets.DISPATCH_TOKEN }}
+        repository:
+          # 알릴 저장소
+          ${{ env.ORDER }}/${{ env.DEPLOY_REPO }}
+        event-type: app_delivery
+        client-payload: '{
+          "app_image":
+            "${{ env.REGISTRY }}/${{ env.OWNER }}/${{ env.APP_REPO }}",
+          "app_name": "${{ env.APP_REPO }}"
+          "app_version": "${{ env.VERSION }}"
+        }'

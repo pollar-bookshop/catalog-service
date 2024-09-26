@@ -831,7 +831,7 @@
         --node-pool "name=basicnp;size=s-2vcpu-4gb;count=3;label=type=basic;" \
         --region sgp1
       * 클러스터 아이디 조회 및 현재 컨텍스트 확인
-        * 클러스터 아이디: 6c0dbfa8-fc43-4a7d-a8d7-8058d2c55f61
+        * 클러스터 아이디: 70d1d7c4-17f3-4e38-a96f-eb00dc22b5d4
         * doctl k8s cluster list
         * kubectl config current-context
       * 워커 노드에 대한 정보 확인
@@ -851,7 +851,7 @@
       * 설치 상태 확인
         * doctl databases list
       * 데이터베이스 서버 아이디
-        * 57609c18-7995-4f26-bd8f-f5ae875912d3
+        * 99933703-d467-4cd8-b673-5d9d409c5440
       * 이전에 생성한 쿠보네티스 클러스터에서만 엑세스할 수 있도록 방화벽 설정
         * doctl databases firewalls append <postgresI_id> --rule k8s:<cluster_id>
       * catalog-service, order-service에서 사용할 데이터베이스 생성
@@ -908,7 +908,7 @@
         * kubectl get service polar-keycloak -n keycloak-system
       * 에지/카탈로그/주문 서비스에서 키클록 통합 설정
         * polar-deployment/kubernetes/platform/production/keycloak 에서 아래 명령 실행
-          * ./create-secrets.sh http:/ /139.59.192.205/realms/PolarBookshop
+          * ./create-secrets.sh http:/ /<external_ip>/realms/PolarBookshop
     * B6 폴라 UI 실행
       * polar-deployment/kubernetes/platform/production/polar-ui 에서 아래 명령 실행
         * ./deploy.sh
@@ -936,6 +936,25 @@
     * kustomization.yml 파일 업데이트
   * JVM을 위한 리소스 설정
     * polar-deployment/kubernetes/applications/catalog-service/production/patch-env.yml 파일 업데이트
+#### ch15.2.3 프로덕션 환경에 스프링 부트 배포
+  * 수동 배포
+    * polar-deployment/kubernetes/applications/catalog-service/production 에서 아래 명령어 실행
+      * kubectl apply -k .
+    * 배포 진행상황 확인
+      * kubectl get pods -l app=catalog-service --watch
+    * 포트포워딩
+      * kubectl port-forward service/catalog-service 9001:80
+    * 결과 확인
+      * http :9001/
+    * 배포 삭제
+      * kubectl delete -k .
+### ch15.3 배포 파이프라인: 프로덕션 단계
+#### ch15.3.2 깃허브 액션을 통한 프로덕션 단계 구현
+  * 애플리케이션 저장소에서 워크플로가 완료되면 배포 저장도의 프로덕션 단계 워크플로에 알려주기
+    * catalog-service/.github/workflows/acceptance-stage.yml 파일 업데이트
+    * 깃허브에서 repo, workflow 허용하는 토큰 발행
+    * polar-deployment/.github/workflows.production-stage.yml 파일 작성
+
 
 
 
