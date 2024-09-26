@@ -55,3 +55,4 @@ jobs:
           "app_name": "${{ env.APP_REPO }}"
           "app_version": "${{ env.VERSION }}"
         }'
+
