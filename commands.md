@@ -956,7 +956,6 @@
     * catalog-service 등 저장소로 이동해 Settings - Secrets - Actions - New Repository Secret에서 DISPATCH_TOKEN으로 생성된 값 입력
     * polar-deployment/.github/workflows.production-stage.yml 파일 작성
 
-    
 
 
 ### [참고] 에러 핸들링
