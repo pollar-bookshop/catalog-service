@@ -953,6 +953,7 @@
   * 애플리케이션 저장소에서 워크플로가 완료되면 배포 저장도의 프로덕션 단계 워크플로에 알려주기
     * catalog-service/.github/workflows/acceptance-stage.yml 파일 업데이트
     * 깃허브에서 repo, workflow 허용하는 토큰 발행
+    * catalog-service 등 저장소로 이동해 Settings - Secrets - Actions - New Repository Secret에서 DISPATCH_TOKEN으로 생성된 값 입력
     * polar-deployment/.github/workflows.production-stage.yml 파일 작성
 
 
